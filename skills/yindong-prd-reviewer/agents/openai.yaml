@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yindong PRD Reviewer"
+  short_description: "Review PRDs for logic, ownership, and ops gaps"
+  default_prompt: "Use $yindong-prd-reviewer to check whether this PRD is logically complete and ready for review."

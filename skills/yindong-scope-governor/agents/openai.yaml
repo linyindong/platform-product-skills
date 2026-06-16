@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yindong Scope Governor"
+  short_description: "Assess MVP scope, phase boundaries, and impact"
+  default_prompt: "Use $yindong-scope-governor to assess whether this change belongs in the current phase."

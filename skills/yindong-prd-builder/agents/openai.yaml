@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yindong PRD Builder"
+  short_description: "Build structured fintech PRDs from rough notes"
+  default_prompt: "Use $yindong-prd-builder to turn these rough notes into a structured PRD section."

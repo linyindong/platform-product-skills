@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yindong Product OS"
+  short_description: "Fintech platform product collaboration rules"
+  default_prompt: "Use $yindong-product-operating-system to reason through this fintech platform product problem."

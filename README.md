@@ -16,6 +16,18 @@ The goal is not to generate generic PM documentation. The goal is to help AI col
 - protect MVP boundaries
 - actively challenge gaps during PRD review
 
+## Visual Overview
+
+<p>
+  <img src="assets/images/product-operating-system.png" alt="Yindong Product Operating System" width="48%">
+  <img src="assets/images/prd-builder.png" alt="Yindong PRD Builder" width="48%">
+</p>
+
+<p>
+  <img src="assets/images/prd-reviewer.png" alt="Yindong PRD Reviewer" width="48%">
+  <img src="assets/images/scope-governor.png" alt="Yindong Scope Governor" width="48%">
+</p>
+
 ## Skills
 
 ### `yindong-product-operating-system`
@@ -196,6 +208,10 @@ No license has been added yet.
 - 控制 MVP 范围，避免隐藏 scope expansion
 - 在 PRD review 中主动挑战逻辑缺口
 
+## 图片概览
+
+四个 skills 的说明图见上方 **Visual Overview**，分别对应 Product Operating System、PRD Builder、PRD Reviewer 和 Scope Governor。
+
 ## Skills
 
 ### `yindong-product-operating-system`
@@ -345,4 +361,3 @@ cp -R skills/yindong-scope-governor ~/.codex/skills/
 ## License
 
 暂未添加 license。
-

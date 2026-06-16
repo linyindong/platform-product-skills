@@ -22,6 +22,16 @@ Identify:
 - affected permissions and ownership
 - operational and rollout impact
 
+Classify the change before judging scope:
+
+- Field-only / enum-only change
+- API contract change
+- Flow or state transition change
+- Configuration surface change
+- Migration / data correction change
+- Operational SOP / manual handling change
+- New platform capability
+
 ## Impact Table
 
 Use this format:
@@ -85,6 +95,8 @@ Ask:
 - Can it be expressed as configuration?
 - Can it be represented by a future-compatible field/name without implementing behavior now?
 - Who owns temporary manual work if deferred?
+- Does this only update a contract, or does it introduce new flow/state/ops behavior?
+- If migration or data correction is involved, what is the validation, rollback, and completion checklist?
 
 ## Output Style
 

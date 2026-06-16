@@ -113,6 +113,8 @@ Decision needed:
 
 ## Artifact Fit
 
+Choose the artifact type before choosing output depth. A short feature note, API change note, configuration UI requirement, migration PRD, operational SOP, one-page alignment doc, and large 0-to-1 platform PRD need different collaboration modes.
+
 Adjust density by artifact:
 
 - Full PRD: background, goal, scope, systems, overall flow, flow details, requirements by system, API/data changes, scenarios, rollout/ops, open questions, dependencies/risks.

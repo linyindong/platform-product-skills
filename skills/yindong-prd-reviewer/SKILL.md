@@ -71,6 +71,52 @@ Expected standard:
 
 Do not require full API tables unless the one-pager is being used as the only delivery artifact.
 
+### Migration PRD
+
+Expected standard:
+
+- Source and target systems are clear.
+- Migration trigger, sequence, and completion criteria are defined.
+- Data mapping and validation checklist are present.
+- Cutover, rollback, retry, and manual handling are addressed.
+- Ownership for each migration step is explicit.
+
+### Configuration UI PRD
+
+Expected standard:
+
+- Page path or entry point is clear.
+- List fields, filters, create/edit behavior, validation rules, and empty/error states are defined.
+- Permission, audit, and operation logging are covered when the UI changes operational data.
+- Configuration object and runtime effect are not confused.
+
+### Formula / rule logic PRD
+
+Expected standard:
+
+- Rule format and field definitions are explicit.
+- Processing sequence is deterministic.
+- Examples cover normal and edge cases.
+- Backward compatibility and default behavior are clear.
+- Data source and owner of reference data are defined.
+
+### Operational SOP / issue-handling note
+
+Expected standard:
+
+- Trigger condition and owner are clear.
+- Status transition and closure criteria are explicit.
+- Manual handling, audit trail, and exception queue are covered where relevant.
+- The SOP does not hide product/system gaps that should be fixed later.
+
+### External integration PRD
+
+Expected standard:
+
+- System boundary, request/response contract, callback, timeout/retry, idempotency, and error handling are clear.
+- Sandbox/production differences and rollout plan are covered when relevant.
+- Ownership between internal systems and external partner is explicit.
+
 ### Large 0-to-1 platform PRD
 
 Expected standard:

@@ -19,6 +19,63 @@ Briefly identify:
 
 If the user only asks for impact or feasibility, do not draft the PRD yet; use impact analysis first.
 
+## Template Selection
+
+Choose the template by artifact type instead of forcing one heavy structure.
+
+Short feature PRD:
+
+- Background
+- Objective
+- Scope
+- Requirements
+- API / Data Changes
+- Edge Cases
+- Attachment / Links
+
+API / field change note:
+
+- Background
+- Changed Contract
+- Field Table
+- Validation / Default Behavior
+- Backward Compatibility
+- Downstream Consumers
+- Examples
+
+Configuration UI PRD:
+
+- Background
+- Goal
+- Page Path / Entry
+- List Fields
+- Filter / Query Behavior
+- Create / Edit Behavior
+- Validation Rules
+- Permission / Audit
+- Attachment / Prototype
+
+Migration PRD:
+
+- Background
+- Scope
+- Source / Target Systems
+- Migration Flow
+- Data Mapping
+- Validation / Reconciliation Checklist
+- Cutover / Rollback
+- Open Questions
+
+Formula / rule logic PRD:
+
+- Background
+- Rule Format
+- Field Definitions
+- Processing Logic
+- Examples
+- Edge Cases
+- Backward Compatibility
+
 ## Default PRD Structure
 
 Use this structure unless the user gives a different template:
@@ -37,6 +94,19 @@ Use this structure unless the user gives a different template:
 12. Dependencies / Risks
 
 For short sections, keep only the relevant headings but preserve the same thinking order.
+
+## API / Data Table Style
+
+For API or data changes, default to tables with:
+
+- Field
+- Data Type / Type
+- Mandatory
+- Value / Validation
+- Description
+- Example
+- Change Type: new / existing / removed, when relevant
+- Owner / Consumer, when ownership matters
 
 ## 0-to-1 Platform PRD Additions
 

@@ -1,11 +1,11 @@
 ---
 name: yindong-product-operating-system
-description: Core collaboration rules for Yindong's senior fintech mid-platform product work. Use when working on PRDs, platform capability design, lending/payment/approval/ABS/risk/funding systems, cross-team product governance, decision support, architecture reasoning, operational risk analysis, scope control, or any request that should follow Yindong's product operating logic.
+description: Core collaboration rules for Yindong's complex product and platform work. Use when working on PRDs, platform capability design, cross-system workflows, product governance, decision support, architecture reasoning, operational risk analysis, scope control, or any request that should follow Yindong's product operating logic.
 ---
 
 # Yindong Product Operating System
 
-Use this skill as the default operating layer for Yindong's fintech mid-platform product work. Act as a structured thinking partner, decision-support layer, product governance assistant, review/challenge system, and long-term organizational memory layer.
+Use this skill as the default operating layer for Yindong's complex product and platform work. Act as a structured thinking partner, decision-support layer, product governance assistant, review/challenge system, and long-term organizational memory layer.
 
 Do not create a personality report. Focus on observable work behavior and practical collaboration patterns.
 
@@ -127,4 +127,3 @@ Adjust density by artifact:
 - Preserve mixed Chinese/English terms when they match actual artifacts.
 - Avoid generic PM frameworks, motivational wording, over-polished business language, abstract strategy without system grounding, and long narrative when a table or flow is clearer.
 - Avoid irrelevant legacy context leakage.
-

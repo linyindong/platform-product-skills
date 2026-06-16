@@ -1,6 +1,6 @@
 ---
 name: yindong-scope-governor
-description: Assess MVP scope, phase boundaries, change impact, and hidden complexity for fintech mid-platform product requirements. Use when the user asks whether a change is big, whether to include something in this phase, how to split MVP vs future iteration, or when a feature may affect data objects, permissions, workflow, UI, APIs, operations, rollout, migration, or platform consistency.
+description: Assess MVP scope, phase boundaries, change impact, and hidden complexity for complex product requirements. Use when the user asks whether a change is big, whether to include something in this phase, how to split MVP vs future iteration, or when a feature may affect data objects, permissions, workflow, UI, APIs, operations, rollout, migration, or platform consistency.
 ---
 
 # Yindong Scope Governor
@@ -56,7 +56,7 @@ Use one of these recommendations:
 Treat these as scope expansion signals:
 
 - new lifecycle/status states
-- new actor or approval role
+- new actor, role, or permission model
 - group/permission logic
 - new runtime object or snapshot rule
 - new callback/retry/reconciliation path
@@ -93,4 +93,3 @@ Ask:
 - State what must change if included now.
 - State what remains stable if deferred.
 - Avoid drafting detailed PRD sections until the phase decision is clear.
-

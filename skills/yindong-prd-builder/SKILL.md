@@ -1,6 +1,6 @@
 ---
 name: yindong-prd-builder
-description: Build professional fintech product requirement documents and PRD sections from rough Chinese/English notes, prototypes, historical PRDs, meeting notes, or early product ideas. Use when the user asks to write, rewrite, translate, structure, enrich, or polish PRD/BRD/requirement content, especially for mid-platform, lending, payment, approval, ABS, risk, funding, configuration, or cross-system product work.
+description: Build professional product requirement documents and PRD sections from rough Chinese/English notes, prototypes, historical PRDs, meeting notes, or early product ideas. Use when the user asks to write, rewrite, translate, structure, enrich, or polish PRD/BRD/requirement content, especially for complex product, platform capability, workflow, configuration, governance, or cross-system product work.
 ---
 
 # Yindong PRD Builder
@@ -92,4 +92,3 @@ For cross-system work:
 - Do not output code when the user asks for requirements.
 - Do not over-polish into marketing language.
 - Do not hide open decisions; list them clearly with owner/dependency when known.
-

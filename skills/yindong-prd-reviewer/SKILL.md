@@ -1,6 +1,6 @@
 ---
 name: yindong-prd-reviewer
-description: Review fintech PRDs, product requirement drafts, platform designs, prototypes, and requirement sections for logic closure, system ownership, flow completeness, data model adequacy, edge cases, operational handling, rollout risk, and implementation readiness. Use when the user asks to check, review, validate, find gaps, see if logic is closed-loop, or assess whether a PRD is ready.
+description: Review PRDs, product requirement drafts, platform designs, prototypes, and requirement sections for logic closure, system ownership, flow completeness, data model adequacy, edge cases, operational handling, rollout risk, and implementation readiness. Use when the user asks to check, review, validate, find gaps, see if logic is closed-loop, or assess whether a PRD is ready.
 ---
 
 # Yindong PRD Reviewer
@@ -57,7 +57,7 @@ Check API and implementation readiness:
 - Error codes/messages, idempotency, optimistic locking, retry, and timeout behavior are defined where relevant.
 - Downstream consumers have enough data to act.
 
-Check fintech operational reality:
+Check operational reality:
 
 - Reconciliation, settlement timing, audit logs, monitoring, exception queues, manual fallback, rollout, and support handling are addressed.
 - Migration compatibility and old/new platform behavior are considered.
@@ -82,4 +82,3 @@ Check artifact consistency:
 - Do not turn review into a full rewrite.
 - Do not over-index on compliance unless the user frames the work as compliance-related.
 - Do not infer personal traits from document style.
-

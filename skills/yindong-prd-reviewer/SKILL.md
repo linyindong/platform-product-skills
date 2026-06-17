@@ -32,6 +32,25 @@ Recommended handling:
 
 Then add open questions and optional improvement suggestions.
 
+## Audience Mode
+
+Choose the output mode based on the user's request and likely audience.
+
+PM-friendly review:
+
+- Use when the document is early, written by a less technical PM, or the user asks for overall quality.
+- Start with the top risks and the concrete next fixes.
+- Translate technical gaps into business consequences.
+- Avoid overwhelming the author with a long engineering checklist unless the risk is blocking.
+
+Engineering readiness review:
+
+- Use when the PRD is preparing for engineering review or implementation.
+- Be strict about ownership, states, API/data contracts, idempotency, callback/retry, compatibility, migration, rollout, audit, and operational handling.
+- Keep findings actionable enough for PM, engineering, QA, and ops to align on what must change.
+
+If the user asks for a score, give a score out of 10 only after the review calibration, and anchor the score to implementation readiness rather than writing polish.
+
 ## Review Calibration
 
 Classify the artifact before applying the checklist.
@@ -187,6 +206,12 @@ Check artifact consistency:
 - The draft follows provided prototypes, existing PRD files, Jira/prototype links, and latest source material.
 - Product taxonomy and system names are accurate.
 - One-page documents are concise; full PRDs are complete.
+
+Check PM accessibility:
+
+- Missing technical concepts are translated into business questions the PM can answer.
+- Feedback distinguishes "you must decide the business behavior" from "engineering should design the implementation."
+- Review does not punish a simple PRD for lacking platform-level sections when the scope is genuinely simple.
 
 ## Severity Guide
 

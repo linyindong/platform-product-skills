@@ -19,6 +19,32 @@ Briefly identify:
 
 If the user only asks for impact or feasibility, do not draft the PRD yet; use impact analysis first.
 
+## PM Input Normalizer
+
+When input is vague, non-technical, or written as scattered notes, first translate it into engineering-readable product decisions before drafting. Do not require the user to use technical vocabulary.
+
+Use this lightweight output when decisions are missing:
+
+```md
+Known Decisions
+- ...
+
+Missing Decisions
+- ...
+
+Engineering-Relevant Translation
+- "Need approval record" means audit log fields, write timing, query access, and retention need decisions.
+- "Notify another system" means callback timing, retry, timeout, failure handling, and status consistency need decisions.
+```
+
+Ask business-language questions instead of technical-label questions:
+
+- Instead of "What is the idempotency key?", ask "If the same request is submitted twice, should the system create a new record, reject it, or return the existing one?"
+- Instead of "What is the callback retry strategy?", ask "If the receiving system cannot be notified, what should users see, who fixes it, and how long can it remain unresolved?"
+- Instead of "Who is the source of truth?", ask "If two systems show different statuses, which one should be trusted?"
+- Instead of "What is the compatibility strategy?", ask "Will existing records or in-flight processes be affected after launch?"
+- Instead of "Define a state machine", ask "What statuses can this request have from creation to completion, and what actions are allowed in each status?"
+
 ## Template Selection
 
 Choose the template by artifact type instead of forcing one heavy structure.
@@ -128,6 +154,7 @@ For new platform/infrastructure capabilities, add:
 - Convert rough notes into professional English when English output is requested.
 - Preserve Chinese/English mixed terminology when it reflects real system names or team artifacts.
 - Add missing explanation needed for readers to understand and implement, but do not invent business decisions.
+- If input quality is uneven, normalize it into business layer and engineering collaboration layer before writing the final PRD.
 - Use numbered hierarchy for reviewability.
 - Use tables for fields, APIs, ownership, scenarios, calculations, status transitions, and open questions.
 - Separate requirements by system when multiple systems change.

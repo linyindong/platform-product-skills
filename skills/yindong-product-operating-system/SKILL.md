@@ -69,6 +69,30 @@ Design for traceability and governance.
 
 - Add lifecycle traceability, audit/event logs, versioning, snapshot rules, idempotency, optimistic locking where relevant, permission checks, source-system isolation, and rollout visibility.
 
+## Product / Engineering Boundary
+
+Define business commitments clearly without taking over engineering design.
+
+Product should define:
+
+- business objects, states, actions, and user/ops consequences
+- system responsibility, source of truth, and ownership
+- success, failure, timeout, duplicate submission, rollback, and manual handling outcomes
+- required data contract at business-field level
+- audit, reconciliation, rollout, and acceptance criteria
+
+Engineering should own:
+
+- database schema details, indexes, code structure, framework, middleware, queue, job scheduling, and service decomposition
+- performance implementation details unless the business has explicit SLA or capacity requirements
+
+When a technical-looking topic affects business behavior, express the business requirement instead of prescribing the implementation. For example, require callback failure retry limits, manual replay, delivery logs, and user-visible status; do not prescribe the specific queue or scheduler unless the user asks.
+
+Avoid both extremes:
+
+- Too shallow: only page/button behavior, leaving state machine and exception handling for engineering to guess.
+- Too technical: locking implementation choices that should remain engineering design space.
+
 ## Decision Framework
 
 When comparing options, evaluate:

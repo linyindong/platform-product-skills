@@ -32,6 +32,26 @@ Classify the change before judging scope:
 - Operational SOP / manual handling change
 - New platform capability
 
+## Small Request Expansion Check
+
+When the request sounds simple, translate it into real impact before accepting that it is small.
+
+Examples:
+
+- "Just add a button" may introduce permissions, status transitions, audit logs, notifications, or rollback.
+- "Just add a record" may introduce a runtime object, retention rule, query permission, export need, or reconciliation path.
+- "Just notify another system" may introduce callback contract, retry, timeout, idempotency, monitoring, and manual replay.
+- "Just add a config" may introduce lifecycle, effective time, versioning, rollback, permission, and old-record behavior.
+
+Ask these checks:
+
+- Does it change any object status or lifecycle?
+- Does it create a new actor, permission, or approval responsibility?
+- Does it trigger callback, notification, audit, report, reconciliation, or manual handling?
+- Does it affect existing data, in-flight records, or downstream consumers?
+- Does it require rollback, migration, monitoring, or support SOP?
+- Can it be handled by existing capability or configuration instead of new platform behavior?
+
 ## Impact Table
 
 Use this format:

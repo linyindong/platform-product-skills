@@ -1,36 +1,105 @@
 ---
 name: yindong-prd-reviewer
-description: Review PRDs, product requirement drafts, platform designs, prototypes, and requirement sections for logic closure, system ownership, flow completeness, data model adequacy, edge cases, operational handling, rollout risk, and implementation readiness. Use when the user asks to check, review, validate, find gaps, see if logic is closed-loop, or assess whether a PRD is ready.
+description: Review PRDs, product requirement drafts, platform designs, prototypes, and requirement sections with product-logic-first judgment, then assess system ownership, flow completeness, state consistency, data/API readiness, edge cases, operational handling, rollout risk, and RFC/engineering follow-up needs. Use when the user asks to check, review, validate, find gaps, see if logic is closed-loop, score a PRD, or assess whether a PRD is ready for product or engineering review.
 ---
 
 # Yindong PRD Reviewer
 
-Use this skill in review mode. Prioritize product/system risks over wording polish. Do not rewrite the document unless the user asks.
+Use this skill in review mode. Prioritize product logic, business closure, scope clarity, ownership, and user/ops outcomes over wording polish or engineering checklist detail. Do not rewrite the document unless the user asks.
 
 First calibrate the review depth. A short feature PRD, implementation note, API change note, one-page alignment doc, and large 0-to-1 platform PRD should not be judged by the same completeness standard.
 
 ## Review Stance
 
-Start with a brief review calibration:
+Start by judging whether the PRD works as a product document:
+
+- Is the requirement goal clear?
+- Is the main flow logically closed?
+- Is scope clear?
+- Are there logic conflicts?
+- Are there fatal product gaps?
+- Is it ready for product review, engineering review, or only early discussion?
+
+Keep API fields, error codes, idempotency design, callback retry implementation, storage, queue, job scheduling, and monitoring implementation visible, but classify them as RFC/engineering follow-up unless the missing detail breaks product logic, status consistency, money/contract/approval results, or ownership/source-of-truth decisions.
+
+## Default Output Structure
+
+Use this structure by default:
+
+1. Overall Assessment
+2. Fatal Issues / Blocking Items
+3. Must Improve
+4. Nice to Improve
+5. Mid-platform / Engineering RFC Follow-up
+6. Open Questions
+7. Score / Readiness Judgment
+
+### Overall Assessment
+
+Briefly cover:
+
+- requirement goal clarity
+- main-flow closure
+- scope clarity
+- logic conflicts
+- fatal gaps, if any
+- product/engineering review readiness
+- current score or readiness level when useful
+
+### Fatal Issues / Blocking Items
+
+Use this section only for severe product problems:
+
+- product logic does not close
+- business flow breaks
+- key owner/source of truth is unclear
+- status, money, contract, approval, or operational results may become inconsistent
+- core scope is impossible to review because current-phase boundaries are missing
+
+Do not classify every missing API field, error code, or engineering detail as blocking.
+
+### Must Improve
+
+List product-side decisions that must be clarified. Use clear mini-headings instead of making `Issue:` the visual structure.
+
+Preferred format:
 
 ```md
-Document type:
-Expected review depth:
-Readiness judgment:
-```
-
-Then lead with findings, ordered by practical impact.
-
-For each finding, include:
-
-```md
-Issue:
+**1. Returned resubmission semantics need to be clarified**
+Problem:
 Why it matters:
-Affected area:
-Recommended handling:
+Suggested product decision:
 ```
 
-Then add open questions and optional improvement suggestions.
+Suggestions should define business semantics, user/ops-visible behavior, status meaning, source of truth, ownership, acceptance criteria, and manual handling. Do not prescribe engineering implementation unless the user asks.
+
+### Nice to Improve
+
+Use for non-blocking improvements such as clearer scope expression, acceptance scenarios, button/copy naming, future-phase marking, QA cases, table formatting, and reader navigation.
+
+### Mid-platform / Engineering RFC Follow-up
+
+Separate items that should be defined in RFC or engineering design, such as:
+
+- API contract details
+- error codes and messages
+- idempotency implementation
+- callback retry technical strategy
+- field tables and schema details
+- audit log storage
+- snapshot storage design
+- permission implementation
+- database, queue, job, monitoring, or alerting implementation
+
+Phrase these as follow-up ownership, not PRD failure, unless product semantics depend on them.
+
+### Open Questions
+
+Ask decision-driving questions for product, business, engineering, risk, legal, finance, ops, or external partners. Avoid generic questions.
+
+### Score / Readiness Judgment
+
+When scoring, give a score out of 10 and explain what would move it to the next band. Anchor the score to product logic and review readiness, not writing polish.
 
 ## Audience Mode
 
@@ -39,17 +108,18 @@ Choose the output mode based on the user's request and likely audience.
 PM-friendly review:
 
 - Use when the document is early, written by a less technical PM, or the user asks for overall quality.
-- Start with the top risks and the concrete next fixes.
+- Start with whether the product logic is understandable and what the next concrete fixes are.
 - Translate technical gaps into business consequences.
 - Avoid overwhelming the author with a long engineering checklist unless the risk is blocking.
 
 Engineering readiness review:
 
 - Use when the PRD is preparing for engineering review or implementation.
-- Be strict about ownership, states, API/data contracts, idempotency, callback/retry, compatibility, migration, rollout, audit, and operational handling.
+- Be strict about ownership, states, source of truth, business status meaning, data/API readiness, compatibility, migration, rollout, audit, and operational handling.
 - Keep findings actionable enough for PM, engineering, QA, and ops to align on what must change.
+- Put implementation-specific details into RFC follow-up unless they change product behavior or acceptance.
 
-If the user asks for a score, give a score out of 10 only after the review calibration, and anchor the score to implementation readiness rather than writing polish.
+If the user asks for a score, give a score out of 10 only after judging product logic, business closure, and review readiness. Do not anchor the score to writing polish or RFC-level implementation detail.
 
 ## Review Calibration
 
@@ -149,13 +219,37 @@ Expected standard:
 
 Apply the full checklist strictly.
 
+## Product PRD / Engineering RFC Boundary
+
+PRD should define:
+
+- business semantics
+- user/ops-visible result
+- business meaning of status changes
+- system responsibility boundary
+- source of truth
+- exception behavior and manual handling policy
+- acceptance criteria
+
+RFC or engineering design should define:
+
+- exact API fields and error code list
+- database schema
+- idempotency implementation
+- retry technical strategy
+- concrete state-machine implementation
+- storage, queue, job scheduling, monitoring, and alerting implementation
+
+During review, point out when RFC must carry an item, but do not treat RFC-level details as PRD blocking items unless the missing decision affects business closure.
+
 ## Output Severity
 
 Prefer product-review language over abstract severity labels:
 
-- Blocking before engineering review: must fix before meaningful review or implementation.
-- Should fix before launch: does not block discussion but creates delivery, data, ops, or rollout risk.
-- Nice to improve: clarity, structure, or maintainability improvement.
+- Fatal / blocking: product logic, core flow, source of truth, owner, or critical status/money/contract/approval result is broken or ambiguous.
+- Must improve: product decision must be clarified before engineering can confidently implement.
+- Nice to improve: clarity, structure, QA, acceptance, or future-phase improvement.
+- RFC follow-up: engineering/design details that should be owned outside the PRD.
 - Open questions: decisions or ownership confirmations still needed.
 
 Use Critical/High/Medium/Low only if the user asks for severity labels or the team format requires them.
@@ -194,6 +288,7 @@ Check API and implementation readiness:
 - API/data-field changes include field name, mandatory flag, example, description, owner system, and change type when needed.
 - Error codes/messages, idempotency, optimistic locking, retry, and timeout behavior are defined where relevant.
 - Downstream consumers have enough data to act.
+- Missing API/error-code/storage/retry details are classified as RFC follow-up unless product semantics, status consistency, or acceptance depends on them.
 
 Check operational reality:
 
@@ -226,3 +321,6 @@ Check PM accessibility:
 - Do not turn review into a full rewrite.
 - Do not over-index on compliance unless the user frames the work as compliance-related.
 - Do not infer personal traits from document style.
+- Do not make `Issue / Why it matters / Affected area / Recommended handling` the default visual structure, though you may use those dimensions internally.
+- Do not over-penalize a business PRD for missing RFC-level implementation detail.
+- Do not prescribe API, database, queue, retry job, or monitoring implementation unless the user explicitly asks for engineering design.

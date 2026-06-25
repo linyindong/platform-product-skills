@@ -266,11 +266,6 @@ These skills intentionally avoid personal profiling. They focus on observable wo
 - operational sustainability
 - direct and structured communication
 
-## Research and Design Notes
-
-- [Top Agent Skills Repository Best Practices](docs/top-agent-skills-repository-best-practices.md)
-- [Yindong Skills Design Standard](docs/skill-design-standard.md)
-
 ## License
 
 No license has been added yet.
@@ -542,11 +537,6 @@ cp -R skills/yindong-scope-governor ~/.codex/skills/
 - flow-first 产品推理
 - 运营可持续性
 - 实用、直接、结构化的沟通
-
-## 研究和设计说明
-
-- [Top Agent Skills Repository Best Practices](docs/top-agent-skills-repository-best-practices.md)
-- [Yindong Skills Design Standard](docs/skill-design-standard.md)
 
 ## License
 

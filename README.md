@@ -1,5 +1,9 @@
 # Product Management Agent Skills for PRD, Scope, and Platform Product Work
 
+<a id="english"></a>
+
+Language: [English](#english) | [中文](#中文)
+
 Yindong Skills is a Codex skills library for product managers working on PRD writing, PRD review, MVP scope control, platform product design, and cross-system product collaboration.
 
 It is especially useful for product teams working on complex requirements, platform capabilities, workflow products, internal tools, back-office systems, fintech/platform products, and engineering-readiness review.
@@ -272,7 +276,11 @@ No license has been added yet.
 
 ---
 
+<a id="中文"></a>
+
 # 中文说明：产品经理 Agent Skills，用于 PRD、范围控制和平台型产品协作
+
+语言：[English](#english) | [中文](#中文)
 
 Yindong Skills 是一组面向产品经理的 Codex skills，用于结构化产品协作、PRD 编写、PRD Review、MVP 范围控制、平台型产品设计和跨系统协作。
 

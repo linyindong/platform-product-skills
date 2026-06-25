@@ -110,18 +110,6 @@ back-office
 product-ops
 ```
 
-## Visual Overview
-
-<p>
-  <img src="assets/images/product-operating-system.png" alt="Yindong Product Operating System" width="48%">
-  <img src="assets/images/prd-builder.png" alt="Yindong PRD Builder" width="48%">
-</p>
-
-<p>
-  <img src="assets/images/prd-reviewer.png" alt="Yindong PRD Reviewer" width="48%">
-  <img src="assets/images/scope-governor.png" alt="Yindong Scope Governor" width="48%">
-</p>
-
 ## Skills
 
 ### `yindong-product-operating-system`
@@ -395,10 +383,6 @@ workflow
 back-office
 product-ops
 ```
-
-## 图片概览
-
-四个 skills 的说明图见上方 **Visual Overview**，分别对应 Product Operating System、PRD Builder、PRD Reviewer 和 Scope Governor。
 
 ## Skills
 

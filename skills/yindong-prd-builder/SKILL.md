@@ -19,6 +19,15 @@ Briefly identify:
 
 If the user only asks for impact or feasibility, do not draft the PRD yet; use impact analysis first.
 
+## When NOT to Use
+
+Do not use this skill as the first move when:
+
+- the business problem or target user is still contested; first clarify direction with `yindong-product-operating-system`
+- the question is "should we do this now?"; first use `yindong-scope-governor`
+- the user only wants review feedback on an existing artifact; use `yindong-prd-reviewer`
+- the request is a pure engineering RFC, code design, or implementation plan with no product requirement work
+
 ## PM Input Normalizer
 
 When input is vague, non-technical, or written as scattered notes, first translate it into engineering-readable product decisions before drafting. Do not require the user to use technical vocabulary.
@@ -44,6 +53,23 @@ Ask business-language questions instead of technical-label questions:
 - Instead of "Who is the source of truth?", ask "If two systems show different statuses, which one should be trusted?"
 - Instead of "What is the compatibility strategy?", ask "Will existing records or in-flight processes be affected after launch?"
 - Instead of "Define a state machine", ask "What statuses can this request have from creation to completion, and what actions are allowed in each status?"
+
+## Assumption and Evidence Ledger
+
+When important decisions are inferred from rough notes, surface them before finalizing:
+
+```md
+Assumptions
+- A1: ...
+
+Evidence / Source
+- E1: From user note / prototype / prior PRD / meeting note / explicit instruction
+
+Needs Confirmation
+- C1: ...
+```
+
+Do not silently turn assumptions into requirements. If the user asks to proceed, keep unresolved items in Open Questions with owner/dependency when known.
 
 ## Template Selection
 
@@ -121,6 +147,19 @@ Use this structure unless the user gives a different template:
 
 For short sections, keep only the relevant headings but preserve the same thinking order.
 
+## Output Contract
+
+Every PRD-style output should make these things testable:
+
+- Problem and "why now"
+- Current-phase goal
+- Scope boundaries
+- Main flow and key exception flows
+- Product decisions still open
+- Acceptance criteria or scenario matrix
+- Owner/source-of-truth for cross-system behavior
+- Rollout, rollback, or temporary manual handling when relevant
+
 ## API / Data Table Style
 
 For API or data changes, default to tables with:
@@ -189,3 +228,14 @@ For cross-system work:
 - Do not output code when the user asks for requirements.
 - Do not over-polish into marketing language.
 - Do not hide open decisions; list them clearly with owner/dependency when known.
+
+## Quality Checklist
+
+Before finalizing, verify:
+
+- [ ] The document explains what to build and why.
+- [ ] Scope is explicit: in scope, out of scope, not supported now, future.
+- [ ] Requirements are testable enough for QA or engineering review.
+- [ ] Cross-system ownership and source of truth are visible.
+- [ ] Assumptions are separated from confirmed decisions.
+- [ ] Technical considerations are surfaced without over-prescribing implementation.

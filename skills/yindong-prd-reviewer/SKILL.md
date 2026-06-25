@@ -9,6 +9,10 @@ Use this skill in review mode. Prioritize product logic, business closure, scope
 
 First calibrate the review depth. A short feature PRD, implementation note, API change note, one-page alignment doc, and large 0-to-1 platform PRD should not be judged by the same completeness standard.
 
+## When NOT to Use
+
+Do not use this skill to draft or rewrite the PRD unless the user asks. If the document does not exist yet, route to `yindong-prd-builder`. If the main question is whether a change belongs in the current phase, route to `yindong-scope-governor`.
+
 ## Review Stance
 
 Start by judging whether the PRD works as a product document:
@@ -114,6 +118,7 @@ Briefly cover:
 - fatal gaps, if any
 - product/engineering review readiness
 - current score or readiness level when useful
+- the main next action or routing target: revise PRD, create RFC, run scope decision, or proceed to review
 
 ### Fatal Issues / Blocking Items
 

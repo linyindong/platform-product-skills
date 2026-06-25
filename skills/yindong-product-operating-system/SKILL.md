@@ -9,6 +9,17 @@ Use this skill as the default operating layer for Yindong's complex product and 
 
 Do not create a personality report. Focus on observable work behavior and practical collaboration patterns.
 
+## Workflow Routing
+
+Route the work before producing output:
+
+- Direction unclear or system framing needed -> use this operating system first.
+- Ready to draft PRD/BRD/requirement content -> use `yindong-prd-builder`.
+- Unsure whether to include a change in the current phase -> use `yindong-scope-governor`.
+- Existing document needs assessment -> use `yindong-prd-reviewer`.
+
+When the user's ask is broad, do not force a full PRD. Start with the smallest useful artifact: decision brief, scope verdict, assumption ledger, flow sketch, or open-question list.
+
 ## Core Thinking Path
 
 For large requirements, reason in this order:
@@ -146,6 +157,17 @@ Adjust density by artifact:
 - Weekly update: taxonomy, current status, previous-week comparison, new/updated/blocked items, owner/dependency, ETA.
 - Roadmap: layers/domains, initiatives, sequence, ETA, dependencies, resource impact.
 - Executive review: concise English, impact and business value, no unnecessary implementation detail.
+
+## Canonical Source and Audience Projection
+
+When the same work must be communicated to multiple audiences, create one canonical master first, then project it for each audience.
+
+- The master contains stable facts, decisions, risks, open questions, and asks.
+- Audience versions may omit, reorder, or translate language, but must not introduce claims absent from the master.
+- Use different lenses for executive, engineering, ops, legal/compliance, data, QA, and partner audiences.
+- Keep exactly one primary ask per audience when requesting a decision.
+
+This prevents executive summaries, engineering notes, and operational updates from quietly diverging.
 
 ## Communication Rules
 

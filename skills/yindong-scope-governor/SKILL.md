@@ -7,6 +7,10 @@ description: Assess MVP scope, phase boundaries, change impact, and hidden compl
 
 Use this skill before drafting when the user is exploring whether a requirement belongs in the current phase.
 
+## When NOT to Use
+
+Do not use this skill to write the full PRD; after the scope verdict, route to `yindong-prd-builder`. Do not use it as a final document review; use `yindong-prd-reviewer`. If the business direction itself is unclear, route to `yindong-product-operating-system` first.
+
 ## First Move
 
 Do impact analysis before writing detailed PRD content.
@@ -31,6 +35,34 @@ Classify the change before judging scope:
 - Migration / data correction change
 - Operational SOP / manual handling change
 - New platform capability
+
+## Build Risk Gate
+
+Before recommending inclusion, name the single biggest risk:
+
+```md
+Biggest Risk:
+Evidence:
+Verdict:
+Next Validation:
+Route To:
+```
+
+Use one verdict:
+
+- Include in MVP
+- Simplify for MVP
+- Validate first
+- Defer to future iteration
+- Add compatibility placeholder
+- Reject for this product layer
+
+For feature requests, separate demand evidence from opinions:
+
+- Weak signals: one-off ask, competitor-copy, internal anxiety, compliments
+- Stronger signals: repeated workflow blocker, revenue/retention impact, manual workaround, regulatory/ops requirement, production incident
+
+If evidence is weak but the idea may matter, recommend a low/no-build validation step before PRD drafting.
 
 ## Small Request Expansion Check
 
@@ -77,6 +109,7 @@ Use one of these recommendations:
 
 - Include in MVP: required for production usability or logical closure.
 - Simplify for MVP: needed, but should be implemented with a narrower version.
+- Validate first: possible value, but current evidence is too weak to commit delivery capacity.
 - Defer to future iteration: useful, but creates disproportionate complexity now.
 - Add compatibility placeholder: not implemented now, but data/model naming should not block future support.
 - Reject for this product layer: belongs to another system/team or duplicates existing platform capability.
@@ -122,6 +155,8 @@ Ask:
 
 - Be direct and concise.
 - Give a recommendation, not only pros/cons.
+- Name the biggest risk instead of producing only a long risk inventory.
 - State what must change if included now.
 - State what remains stable if deferred.
+- Route to the next skill or artifact after the scope decision.
 - Avoid drafting detailed PRD sections until the phase decision is clear.

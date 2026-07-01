@@ -1,6 +1,6 @@
 ---
 name: platform-flow-modeler
-description: Model cross-system product flows, state transitions, exception paths, callbacks, retries, rollback, reconciliation, migration, and manual fallback for platform, workflow, back-office, and fintech requirements. Use when Codex needs to create, clarify, or review flows before PRD writing, scope decisions, product direction, or PRD review.
+description: Model cross-system product flows, state transitions, exception paths, callbacks, retries, rollback, reconciliation, migration, and manual fallback for platform, workflow, back-office, and fintech requirements. Use when creating, clarifying, or reviewing flows before PRD writing, scope decisions, product direction, or PRD review.
 ---
 
 # Platform Flow Modeler

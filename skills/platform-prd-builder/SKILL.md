@@ -223,6 +223,36 @@ This skill should produce an artifact, not only advice. If the artifact cannot b
 
 For detailed PRD templates and artifact-specific output contracts, read `references/prd-output-contract.md` when the task involves a full PRD, 0-to-1 platform PRD, migration PRD, configuration UI PRD, or API/data change note.
 
+## Scenarios & Acceptance Criteria
+
+For Scenarios & Edge Cases sections, use Given/When/Then acceptance criteria when it improves QA and engineering alignment:
+
+```md
+**Scenario: [name]**
+- Given: [precondition: system state, actor, data, configuration]
+- When: [trigger action]
+- Then: [expected result: final status, user/ops-visible outcome, downstream sync, audit record]
+```
+
+Cover these scenario types when relevant:
+
+- Happy path
+- Validation failure: missing field, invalid value, duplicate submission
+- Downstream system failure: callback timeout, API error, partial failure
+- Concurrent or duplicate submission
+- Status transition edge case: resubmission from terminal state, mid-flow cancellation
+- Rollback or reversal
+- Manual fallback: ops intervention or exception queue entry
+- Permission boundary: actor not allowed or source-system mismatch
+
+Make each `Then` clause testable. Name the final status, the user/ops-visible result, whether downstream systems are notified, and whether an audit/event record is created.
+
+If the scenario matrix would be large, use a compact table:
+
+| Scenario | Precondition | Trigger | Final Status | User/Ops Result | Downstream | Audit |
+|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |
+
 ## API / Data Table Style
 
 For API or data changes, default to tables with:

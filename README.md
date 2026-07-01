@@ -261,34 +261,82 @@ They can also be reused as structured markdown instructions in other AI agents t
 
 ## Suggested Workflow
 
-For a new complex requirement:
+This is the recommended sequence for a new complex platform requirement, from ambiguity to reviewed PRD. Steps 2 and 4 are optional, and you can enter at any step.
+
+```text
+Step 1  Direction unclear?
+        -> platform-product-guide
+        Clarify business problem, system boundary, reusable capability,
+        flow direction, ownership, and rollout considerations.
+        Output: decision brief, assumption list, or flow sketch.
+
+Step 2  Need to model flows before writing?
+        -> platform-flow-modeler
+        Model main flow, exception flows, state transitions, callbacks,
+        rollback, reconciliation, and open flow questions.
+        Output: flow tables, state transition, open decisions.
+        Skip if the requirement has no meaningful cross-system flow complexity.
+
+Step 3  Ready to write the PRD?
+        -> platform-prd-builder
+        Turn flow model, notes, prototypes, or meeting inputs into a
+        structured PRD or requirement section.
+        Output: product-readable, engineering-reviewable PRD with
+        scenarios, acceptance criteria, and open questions.
+
+Step 4  Unsure whether to include something in this phase?
+        -> platform-scope-checker
+        Get a verdict: Include / Simplify / Validate / Defer / Reject,
+        with impact table and MVP boundary.
+        Use before Step 3 or mid-draft when scope questions arise.
+
+Step 5  PRD written and needs a quality check?
+        -> platform-prd-reviewer
+        Review for document quality, logic closure, ownership, flow
+        completeness, data/API readiness, operations, and RFC follow-up.
+        Output: Overall Assessment, Fatal Issues, Must Improve, Score.
+```
+
+Quick reference:
+
+| Situation | Skill |
+|---|---|
+| Direction and system framing unclear | `platform-product-guide` |
+| 3+ systems, callbacks, or state transitions involved | `platform-flow-modeler` |
+| Ready to draft a PRD or requirement section | `platform-prd-builder` |
+| Unsure whether this belongs in the current phase | `platform-scope-checker` |
+| PRD written; need a review before product or engineering review | `platform-prd-reviewer` |
+
+Typical prompts:
+
+Direction:
 
 ```text
 Use $platform-product-guide to clarify the business problem, system boundary, reusable platform capability, flow, runtime objects, API/data changes, and rollout considerations.
 ```
 
-For drafting:
-
-```text
-Use $platform-prd-builder to turn the following notes into a structured PRD. Do not simply translate; reorganize and enrich the content where needed.
-```
-
-For flow modeling:
+Flow:
 
 ```text
 Use $platform-flow-modeler to model the main flow, exception flows, state transitions, callbacks, rollback, reconciliation, and open flow questions before we write the PRD.
 ```
 
-For review:
+PRD:
 
 ```text
-Use $platform-prd-reviewer to review this PRD. Focus on logic closure, ownership, flow, data model, edge cases, operations, rollout, and open questions.
+Use $platform-prd-builder to turn the following notes into a structured PRD. Do not simply translate; reorganize and enrich the content where needed.
 ```
 
-For scope decisions:
+Scope:
 
 ```text
 Use $platform-scope-checker to assess whether this change should be included in the current phase. Give an impact table and a clear include/defer/placeholder recommendation.
+```
+
+Review:
+
+```text
+Use $platform-prd-reviewer to review this PRD. Focus on logic closure, ownership, flow, data model, edge cases, operations, rollout, and open questions.
 ```
 
 ## Updating
@@ -592,34 +640,82 @@ Use $platform-flow-modeler to model the lifecycle, exception paths, callbacks, r
 
 ## 推荐使用场景
 
-新复杂需求从 0 到 1：
+这是一个复杂平台型需求从模糊到 PRD review 的推荐流程。Step 2 和 Step 4 可选，也可以从任意步骤进入。
+
+```text
+Step 1  方向还不清楚？
+        -> platform-product-guide
+        梳理业务问题、系统边界、可复用平台能力、
+        flow 方向、ownership 和 rollout 考虑。
+        输出：decision brief、assumption list 或 flow sketch。
+
+Step 2  写 PRD 前需要先建模 flow？
+        -> platform-flow-modeler
+        梳理 main flow、exception flow、state transition、
+        callback、rollback、reconciliation 和 open questions。
+        输出：flow tables、state transition、open decisions。
+        如果没有明显跨系统 flow 复杂度，可以跳过。
+
+Step 3  已经准备写 PRD？
+        -> platform-prd-builder
+        把 flow model、笔记、原型或会议输入整理成
+        结构化 PRD 或 requirement section。
+        输出：产品可读、研发可评审的 PRD，包含 scenarios、
+        acceptance criteria 和 open questions。
+
+Step 4  不确定是否放进当前 phase？
+        -> platform-scope-checker
+        得到 Include / Simplify / Validate / Defer / Reject 判断，
+        并附 impact table 和 MVP boundary。
+        可在 Step 3 前使用，也可在写 PRD 中途使用。
+
+Step 5  PRD 写完需要质量检查？
+        -> platform-prd-reviewer
+        检查文档质量、逻辑闭环、ownership、flow 完整度、
+        data/API readiness、operations 和 RFC follow-up。
+        输出：Overall Assessment、Fatal Issues、Must Improve、Score。
+```
+
+快速参考：
+
+| 场景 | Skill |
+|---|---|
+| 方向和系统框架还不清楚 | `platform-product-guide` |
+| 涉及 3+ 系统、callback 或状态流转 | `platform-flow-modeler` |
+| 准备写 PRD 或 requirement section | `platform-prd-builder` |
+| 不确定是否进入当前 phase | `platform-scope-checker` |
+| PRD 已写完，需要产品/研发评审前检查 | `platform-prd-reviewer` |
+
+典型 prompt：
+
+方向：
 
 ```text
 Use $platform-product-guide to clarify the business problem, system boundary, reusable platform capability, flow, runtime objects, API/data changes, and rollout considerations.
 ```
 
-写 PRD：
-
-```text
-Use $platform-prd-builder to turn the following notes into a structured PRD. Do not simply translate; reorganize and enrich the content where needed.
-```
-
-梳理 flow：
+Flow：
 
 ```text
 Use $platform-flow-modeler to model the main flow, exception flows, state transitions, callbacks, rollback, reconciliation, and open flow questions before we write the PRD.
 ```
 
-审 PRD：
+PRD：
 
 ```text
-Use $platform-prd-reviewer to review this PRD. Focus on logic closure, ownership, flow, data model, edge cases, operations, rollout, and open questions.
+Use $platform-prd-builder to turn the following notes into a structured PRD. Do not simply translate; reorganize and enrich the content where needed.
 ```
 
-判断范围：
+Scope：
 
 ```text
 Use $platform-scope-checker to assess whether this change should be included in the current phase. Give an impact table and a clear include/defer/placeholder recommendation.
+```
+
+Review：
+
+```text
+Use $platform-prd-reviewer to review this PRD. Focus on logic closure, ownership, flow, data model, edge cases, operations, rollout, and open questions.
 ```
 
 ## 更新方式

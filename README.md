@@ -4,7 +4,7 @@
 
 Language: [English](#english) | [中文](#中文)
 
-Platform Product Skills is a Codex skills library for platform, back-office, workflow, and fintech product teams working on PRD writing, PRD review, MVP scope control, and cross-system product collaboration.
+Platform Product Skills is a cross-tool skills library — works in both Codex and Claude Code (CLI, desktop, and claude.ai/code) from a single `SKILL.md` source — for platform, back-office, workflow, and fintech product teams working on PRD writing, PRD review, MVP scope control, and cross-system product collaboration.
 
 It is especially useful for product teams working on complex requirements, platform capabilities, workflow products, internal tools, back-office systems, fintech/platform products, and engineering-readiness review.
 
@@ -204,7 +204,9 @@ git clone https://github.com/linyindong/platform-product-skills.git
 cd platform-product-skills
 ```
 
-Copy the desired skill folders into your local Codex skills directory:
+Then copy the desired skill folders into your tool's skills directory. Both tools read the same `SKILL.md`, so one repo serves both.
+
+**Codex** — install into `~/.codex/skills`:
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -215,11 +217,27 @@ cp -R skills/platform-scope-checker ~/.codex/skills/
 cp -R skills/platform-flow-modeler ~/.codex/skills/
 ```
 
-You can install all skills, or only copy the ones you want to use.
+**Claude Code** — install into `~/.claude/skills` (works for the Claude Code CLI, desktop app, and claude.ai/code):
+
+```bash
+mkdir -p ~/.claude/skills
+cp -R skills/platform-product-guide ~/.claude/skills/
+cp -R skills/platform-prd-builder ~/.claude/skills/
+cp -R skills/platform-prd-reviewer ~/.claude/skills/
+cp -R skills/platform-scope-checker ~/.claude/skills/
+cp -R skills/platform-flow-modeler ~/.claude/skills/
+```
+
+You can install all skills, or only copy the ones you want to use. The `agents/openai.yaml` inside each skill is Codex-only UI metadata; other tools ignore it, so copying the whole folder is safe either way.
 
 ## How to Use
 
-In Codex, explicitly mention the skill name with `$skill-name`.
+The same skills are invoked slightly differently per tool:
+
+- **Codex** — mention the skill explicitly with `$skill-name`, e.g. `$platform-prd-builder`.
+- **Claude Code** — skills trigger automatically from their `description` when your request matches, or you can invoke one explicitly by name, e.g. `/platform-prd-builder`.
+
+The `$name` syntax below is Codex-specific; in Claude Code just describe the task, or use `/skill-name`.
 
 The simplest way to try a skill in any AI tool is to paste the GitHub skill link and your task:
 
@@ -281,9 +299,21 @@ For stronger results, include the product context, current phase, target audienc
 
 ## Works With
 
-This repo is Codex-native. The skills are written in Codex `SKILL.md` format and can be installed into `~/.codex/skills`.
+These skills are cross-tool. They use the standard `SKILL.md` format (YAML frontmatter with `name` + `description`, plus a markdown body), which is shared by both **Codex** (`~/.codex/skills`) and **Claude Code** (`~/.claude/skills` — CLI, desktop app, and claude.ai/code). Clone once and install into either or both.
 
-They can also be reused as structured markdown instructions in other AI agents that support custom skills, project instructions, or file-based context. In those environments, load or paste the relevant `SKILL.md` and ask the agent to follow it.
+They can also be reused as structured markdown instructions in any other AI agent that supports custom skills, project instructions, or file-based context. In those environments, load or paste the relevant `SKILL.md` and ask the agent to follow it.
+
+### Repository Layout
+
+Each skill folder is self-contained:
+
+| File | Read by | Role |
+|---|---|---|
+| `SKILL.md` | All tools | The skill itself: trigger `description` + operating rules. Single source of truth. |
+| `references/*.md` | All tools | Detailed rubrics/templates, loaded on demand (progressive disclosure). |
+| `agents/openai.yaml` | Codex only | Codex UI metadata (display name, default prompt). Optional; other tools safely ignore it. |
+
+Because the shared `SKILL.md` drives behavior in every tool, an improvement committed here reaches Codex and Claude Code alike.
 
 ## Suggested Workflow
 
@@ -367,15 +397,17 @@ Use $platform-prd-reviewer to review this PRD. Focus on logic closure, ownership
 
 ## Updating
 
-To update an installed skill after this repository changes:
+To update installed skills after this repository changes, `git pull`, then re-copy into the directory for your tool — `~/.codex/skills` for Codex, `~/.claude/skills` for Claude Code:
 
 ```bash
 git pull
-cp -R skills/platform-product-guide ~/.codex/skills/
-cp -R skills/platform-prd-builder ~/.codex/skills/
-cp -R skills/platform-prd-reviewer ~/.codex/skills/
-cp -R skills/platform-scope-checker ~/.codex/skills/
-cp -R skills/platform-flow-modeler ~/.codex/skills/
+# set DEST to ~/.codex/skills (Codex) or ~/.claude/skills (Claude Code)
+DEST=~/.claude/skills
+cp -R skills/platform-product-guide "$DEST"/
+cp -R skills/platform-prd-builder "$DEST"/
+cp -R skills/platform-prd-reviewer "$DEST"/
+cp -R skills/platform-scope-checker "$DEST"/
+cp -R skills/platform-flow-modeler "$DEST"/
 ```
 
 If you only use one skill, copy only that folder.
@@ -393,7 +425,7 @@ These skills intentionally avoid personal profiling. They focus on observable wo
 
 ## License
 
-No license has been added yet.
+Released under the [MIT License](LICENSE). You are free to use, modify, and redistribute these skills, including commercially, provided the copyright notice is retained.
 
 ---
 
@@ -403,7 +435,7 @@ No license has been added yet.
 
 语言：[English](#english) | [中文](#中文)
 
-Platform Product Skills 是一组面向平台型产品、中后台、流程产品和金融科技产品团队的 Codex skills，用于结构化产品协作、PRD 编写、PRD Review、MVP 范围控制和跨系统协作。
+Platform Product Skills 是一组**跨工具**的 skills——同一份 `SKILL.md` 在 Codex 和 Claude Code（CLI、桌面 App、claude.ai/code）里都能用——面向平台型产品、中后台、流程产品和金融科技产品团队，用于结构化产品协作、PRD 编写、PRD Review、MVP 范围控制和跨系统协作。
 
 这个仓库目前包含 4 个核心 skills 和 1 个专项 flow skill：
 
@@ -609,7 +641,9 @@ git clone https://github.com/linyindong/platform-product-skills.git
 cd platform-product-skills
 ```
 
-把需要的 skill 文件夹复制到本机 Codex skills 目录：
+再把需要的 skill 文件夹复制到对应工具的 skills 目录。两个工具读的是同一份 `SKILL.md`，一个仓库同时服务两边。
+
+**Codex** —— 安装到 `~/.codex/skills`：
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -620,11 +654,27 @@ cp -R skills/platform-scope-checker ~/.codex/skills/
 cp -R skills/platform-flow-modeler ~/.codex/skills/
 ```
 
-可以全部安装，也可以只复制自己需要的 skill。
+**Claude Code** —— 安装到 `~/.claude/skills`（CLI、桌面 App、claude.ai/code 通用）：
+
+```bash
+mkdir -p ~/.claude/skills
+cp -R skills/platform-product-guide ~/.claude/skills/
+cp -R skills/platform-prd-builder ~/.claude/skills/
+cp -R skills/platform-prd-reviewer ~/.claude/skills/
+cp -R skills/platform-scope-checker ~/.claude/skills/
+cp -R skills/platform-flow-modeler ~/.claude/skills/
+```
+
+可以全部安装，也可以只复制自己需要的 skill。每个 skill 里的 `agents/openai.yaml` 是 Codex 专用的 UI 元数据，其它工具会忽略它，所以整个文件夹直接复制也没问题。
 
 ## 使用方法
 
-在 Codex 中，通过 `$skill-name` 显式调用对应 skill。
+同一套 skill 在不同工具里的调用方式略有差异：
+
+- **Codex** —— 用 `$skill-name` 显式调用，例如 `$platform-prd-builder`。
+- **Claude Code** —— 当你的请求匹配到 skill 的 `description` 时会自动触发，也可以用名字显式调用，例如 `/platform-prd-builder`。
+
+下面示例里的 `$name` 是 Codex 语法；在 Claude Code 里直接描述任务，或用 `/skill-name` 即可。
 
 最简单的试用方法：把 GitHub 上对应 skill 的链接发给 AI，再加上你的任务。
 
@@ -686,9 +736,21 @@ Use $platform-flow-modeler to model the lifecycle, exception paths, callbacks, r
 
 ## 支持哪些工具？
 
-这个仓库是 Codex-native 的。Skills 使用 Codex `SKILL.md` 格式，可以安装到 `~/.codex/skills`。
+这些 skill 是跨工具的。它们采用标准 `SKILL.md` 格式（YAML frontmatter 带 `name` + `description`，加 markdown 正文），**Codex**（`~/.codex/skills`）和 **Claude Code**（`~/.claude/skills`，含 CLI、桌面 App、claude.ai/code）共用同一份文件。Clone 一次，装到其中一个或两个都行。
 
 如果其他 AI 工具支持 custom skills、project instructions 或基于文件的上下文，也可以复用这些 skills。使用方式是读取或粘贴对应的 `SKILL.md`，并要求 AI 按其中规则执行。
+
+### 仓库结构
+
+每个 skill 文件夹自成一体：
+
+| 文件 | 谁读取 | 作用 |
+|---|---|---|
+| `SKILL.md` | 所有工具 | skill 本体：触发用的 `description` + 操作规则。唯一真相源。 |
+| `references/*.md` | 所有工具 | 详细 rubric/模板，按需加载（渐进式披露）。 |
+| `agents/openai.yaml` | 仅 Codex | Codex UI 元数据（显示名、默认 prompt）。可选，其它工具安全忽略。 |
+
+因为行为由共享的 `SKILL.md` 驱动，在这里提交的一处改进会同时生效于 Codex 和 Claude Code。
 
 ## 推荐使用场景
 
@@ -772,15 +834,17 @@ Use $platform-prd-reviewer to review this PRD. Focus on logic closure, ownership
 
 ## 更新方式
 
-当 GitHub 仓库后续更新后，可以这样更新本机已安装的 skills：
+当 GitHub 仓库后续更新后，`git pull`，再重新复制到对应工具的目录——Codex 用 `~/.codex/skills`，Claude Code 用 `~/.claude/skills`：
 
 ```bash
 git pull
-cp -R skills/platform-product-guide ~/.codex/skills/
-cp -R skills/platform-prd-builder ~/.codex/skills/
-cp -R skills/platform-prd-reviewer ~/.codex/skills/
-cp -R skills/platform-scope-checker ~/.codex/skills/
-cp -R skills/platform-flow-modeler ~/.codex/skills/
+# DEST 设为 ~/.codex/skills（Codex）或 ~/.claude/skills（Claude Code）
+DEST=~/.claude/skills
+cp -R skills/platform-product-guide "$DEST"/
+cp -R skills/platform-prd-builder "$DEST"/
+cp -R skills/platform-prd-reviewer "$DEST"/
+cp -R skills/platform-scope-checker "$DEST"/
+cp -R skills/platform-flow-modeler "$DEST"/
 ```
 
 如果只使用某一个 skill，只复制对应文件夹即可。
@@ -798,4 +862,4 @@ cp -R skills/platform-flow-modeler ~/.codex/skills/
 
 ## License
 
-暂未添加 license。
+采用 [MIT License](LICENSE) 开源。可自由使用、修改、再分发（含商用），保留版权声明即可。

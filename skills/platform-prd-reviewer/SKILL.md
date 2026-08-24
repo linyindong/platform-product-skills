@@ -74,6 +74,7 @@ Prioritize findings that point to a specific section, table, field, status, API 
 - field names or payload values whose business meaning is unclear
 - duplicate actors, approvers, owners, or responsibilities
 - user/ops-visible behavior that differs across sections
+- the same concept named or represented differently across sections (see Terminology & Representation Consistency)
 - acceptance criteria that do not test the main flow or key edge cases
 
 For PM-facing or product-leader review, include the top 3-5 document-specific issues before broader platform risk notes. If no strong document-specific issues exist, say so briefly, then continue to product logic and engineering readiness.
@@ -81,6 +82,25 @@ For PM-facing or product-leader review, include the top 3-5 document-specific is
 Do not write generic advice such as "add source of truth," "add state machine," "add exception matrix," or "define callback retry" unless it is tied to a concrete document location or a specific business consequence.
 
 Use broader platform concerns as supporting findings, RFC follow-up, or open questions unless they directly break product logic, status consistency, money/contract/approval result, or source-of-truth ownership.
+
+## Terminology & Representation Consistency
+
+Run a whole-document consistency pass, not a narrow field-type check. The goal is that one concept is expressed the same way — or explicitly reconciled — everywhere it appears.
+
+Build an implicit glossary of the key concepts as you read: each status, action, field, role/actor, entity, and configurable setting. Then check whether any of them is named or represented differently across the document, comparing prose, tables, JSON/API samples, examples, acceptance criteria, screenshots, and diagrams. Flag divergence such as:
+
+- product-facing wording vs its literal value (e.g. a setting shown as `Yes / No` in prose but `true / false` in the JSON example; a status called "Processing" in the flow but "In Progress" in the table)
+- the same field under different names, or the same name meaning different things, across sections
+- an action/button/status labelled one way in the flow and another way in acceptance criteria or screenshots
+- enum/option sets that differ in membership, spelling, casing, or order between where they are defined and where they are used
+- units, ID formats, or value formats stated one way and exemplified another
+
+Not every divergence is a defect. A product-readable label and a technical field value can legitimately differ. But the difference must be intentional and made explicit, never left for the reader to infer. For each divergence found, name both locations, state which concept they refer to, and recommend one of:
+
+- **Add a mapping note**: keep both forms but state the correspondence once at the point of definition (e.g. "Yes / No maps to `true` / `false`").
+- **Unify the wording**: pick one term/representation and align every occurrence, when the two forms serve no distinct purpose.
+
+Raise these as Must Improve when the inconsistency could mislead engineering, QA, or ops about behavior, status, or acceptance; otherwise as Nice to Improve. Do not silently pass over a wording mismatch just because the intent is guessable.
 
 ## Use Platform Flow Modeler When
 

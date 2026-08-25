@@ -42,7 +42,17 @@ Built for the messy realities of platform, workflow, approval, configuration, ri
 
 ## Quick start
 
-**1. Install** — clone once, copy into your tool's skills directory:
+**1. Install — just ask your AI.** You already run Codex or Claude Code, so let it do the setup. Paste this to it:
+
+```text
+Install the platform-product skills from
+https://github.com/linyindong/platform-product-skills — clone the repo and copy
+every folder under skills/ into my skills directory (~/.claude/skills for
+Claude Code, or ~/.codex/skills for Codex).
+```
+
+<details>
+<summary>Prefer to do it by hand? Here are the commands.</summary>
 
 ```bash
 git clone https://github.com/linyindong/platform-product-skills.git
@@ -58,6 +68,8 @@ cp -R skills/platform-prd-reviewer         "$DEST"/
 cp -R skills/platform-scope-checker        "$DEST"/
 cp -R skills/platform-flow-modeler         "$DEST"/
 ```
+
+</details>
 
 **2. Just say what you want.** No skill to pick, nothing to configure — your product deputy is the default entry:
 
@@ -171,7 +183,16 @@ Keywords: agent skills, Codex skills, Claude Code skills, product management, PR
 
 ## 快速上手
 
-**1. 安装** —— clone 一次，复制到你工具的 skills 目录：
+**1. 安装 —— 直接让你的 AI 装。** 你既然在用 Codex 或 Claude Code，让它替你装最省事。把这段发给它：
+
+```text
+从 https://github.com/linyindong/platform-product-skills 安装这套平台产品
+skills —— clone 仓库，把 skills/ 下的每个文件夹复制到我的 skills 目录
+（Claude Code 用 ~/.claude/skills，Codex 用 ~/.codex/skills）。
+```
+
+<details>
+<summary>想自己动手？命令如下。</summary>
 
 ```bash
 git clone https://github.com/linyindong/platform-product-skills.git
@@ -187,6 +208,8 @@ cp -R skills/platform-prd-reviewer         "$DEST"/
 cp -R skills/platform-scope-checker        "$DEST"/
 cp -R skills/platform-flow-modeler         "$DEST"/
 ```
+
+</details>
 
 **2. 直接说你想做什么。** 不用挑 skill、不用配置 —— 产品副手就是默认入口：
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Platform Product Orchestrator"
+  short_description: "Default product deputy for platform PRD workflows"
+  default_prompt: "Use $platform-product-orchestrator as the default entry point to clarify, scope, model, draft, review, and iterate this platform product task."

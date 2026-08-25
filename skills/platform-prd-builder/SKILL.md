@@ -1,6 +1,6 @@
 ---
 name: platform-prd-builder
-description: Build or improve professional PRDs, BRDs, requirement sections, and product decision artifacts from rough Chinese/English notes, prototypes, historical PRDs, meeting notes, or early ideas. Use when the user is ready to write, rewrite, translate, structure, enrich, or polish requirement content, especially for platform capability, workflow, configuration, governance, cross-system, or fintech product work.
+description: Build or improve professional PRDs, BRDs, requirement sections, and product decision artifacts from rough Chinese/English notes, prototypes, historical PRDs, meeting notes, or early ideas. Use when the user is ready to write, rewrite, translate, structure, enrich, or polish requirement content, especially for platform capability, workflow, configuration, governance, cross-system, or fintech product work. Invoked internally by platform-product-orchestrator, or directly when the user names this skill; for a natural-language request that does not name a skill, platform-product-orchestrator is the entry point.
 ---
 
 # Platform PRD Builder

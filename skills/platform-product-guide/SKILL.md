@@ -1,6 +1,6 @@
 ---
 name: platform-product-guide
-description: Core collaboration and routing layer for complex product, platform, and fintech mid-platform work. Use when direction is unclear, a business problem needs to be abstracted into platform capability, a request needs decision support before writing, cross-system ownership or operational risk must be reasoned through, or the user needs routing among PRD building, scope governance, and PRD review.
+description: Core collaboration and routing layer for complex product, platform, and fintech mid-platform work. Use when direction is unclear, a business problem needs to be abstracted into platform capability, a request needs decision support before writing, cross-system ownership or operational risk must be reasoned through, or the user needs routing among PRD building, scope governance, and PRD review. Invoked internally by platform-product-orchestrator, or directly when the user names this skill; for a natural-language request that does not name a skill, platform-product-orchestrator is the entry point.
 ---
 
 # Platform Product Guide

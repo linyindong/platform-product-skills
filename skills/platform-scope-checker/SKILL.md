@@ -1,6 +1,6 @@
 ---
 name: platform-scope-checker
-description: Assess MVP scope, phase boundaries, build risk, change impact, and hidden complexity for product requirements. Use when the user asks whether to include something now, whether a request is actually big, how to split MVP vs future iteration, whether to validate before building, or when a feature may affect data objects, permissions, workflow, UI, APIs, operations, rollout, migration, ownership, or platform consistency.
+description: Assess MVP scope, phase boundaries, build risk, change impact, and hidden complexity for product requirements. Use when the user asks whether to include something now, whether a request is actually big, how to split MVP vs future iteration, whether to validate before building, or when a feature may affect data objects, permissions, workflow, UI, APIs, operations, rollout, migration, ownership, or platform consistency. Invoked internally by platform-product-orchestrator, or directly when the user names this skill; for a natural-language request that does not name a skill, platform-product-orchestrator is the entry point.
 ---
 
 # Platform Scope Checker

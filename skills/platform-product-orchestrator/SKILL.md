@@ -1,6 +1,6 @@
 ---
 name: platform-product-orchestrator
-description: Single entry point for mid-platform / back-office / workflow / fintech product work. Use when the user describes a product goal or task in natural language — write a PRD, review a PRD, understand/summarize an existing PRD, analyze the functional-change impact of a PRD or proposed change, decide MVP scope, model a cross-system flow, or frame an unclear requirement — WITHOUT choosing an individual skill. This skill classifies intent, runs the right workflow using the platform-product specialist skills internally, adapts to the user's remembered preferences, and delivers the final artifact.
+description: Single entry point for mid-platform / back-office / workflow / fintech product work. Use when the user describes a product goal or task in natural language — write a PRD, review a PRD, understand/summarize an existing PRD, analyze the functional-change impact of a PRD or proposed change, decide MVP scope, model a cross-system flow, or frame an unclear requirement — WITHOUT choosing an individual skill. This skill classifies intent, runs the right workflow using the platform-product specialist skills internally, adapts to the user's remembered preferences, and delivers the final artifact. This is the DEFAULT entry point for platform-product work: prefer it over the individual platform-* specialist skills whenever the user has not explicitly named a specific skill.
 ---
 
 # Platform Product Orchestrator

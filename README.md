@@ -4,144 +4,66 @@
 
 Language: [English](#english) | [中文](#中文)
 
-Platform Product Skills is a cross-tool skills library — works in both Codex and Claude Code (CLI, desktop, and claude.ai/code) from a single `SKILL.md` source — for platform, back-office, workflow, and fintech product teams working on PRD writing, PRD review, MVP scope control, and cross-system product collaboration.
+**Your AI product deputy for platform & back-office work — describe what you need, and it takes you from a rough idea to a reviewed PRD.**
 
-It is especially useful for product teams working on complex requirements, platform capabilities, workflow products, internal tools, back-office systems, fintech/platform products, and engineering-readiness review.
+Writing PRDs, reviewing them, drawing MVP boundaries, untangling cross-system flows, chasing down ownership and edge cases — mid-platform product work is heavy, fragmented, and easy to get wrong. This is a skill system that carries that load with you.
 
-The repository includes five specialist skills plus one top-level orchestrator that turns them into a single natural-language entry point:
+You don't pick tools or learn commands. You talk to one **product deputy** in plain language (the `platform-product-orchestrator` skill); it works out what you need, asks only the questions that actually change the decision, and drives the right specialist skills behind the scenes. Works in both **Codex** and **Claude Code** (CLI, desktop, claude.ai/code).
 
-- `platform-product-orchestrator` — entry layer: describe a task in natural language, it routes to the right specialist(s)
-- `platform-product-guide`
-- `platform-prd-builder`
-- `platform-scope-checker`
-- `platform-prd-reviewer`
-- `platform-flow-modeler`
-
-You can talk to the orchestrator and let it choose, or invoke any specialist skill directly when you already know which one you want.
-
-The goal is not to generate generic PM documentation. The goal is to help AI collaborate with a more stable product operating logic:
-
-- abstract business problems into platform capabilities
-- clarify system boundaries and ownership
-- prefer reuse before new build
-- model flows before writing prose
-- cover states, data models, APIs, edge cases, and operational closure
-- protect MVP boundaries
-- actively challenge gaps during PRD review
-
-## Quick Start: Which Skill Should I Use?
-
-Use these skills at different stages of a product requirement:
-
-| Situation | Use this skill | What it helps with |
-|---|---|---|
-| You have not figured out the direction yet | `platform-product-guide` | Clarify the business problem, system boundary, reusable platform capability, flow, ownership, and operating model. |
-| You are ready to write the document | `platform-prd-builder` | Turn rough notes, ideas, meeting notes, or prototypes into a structured PRD/BRD or requirement section. |
-| You are unsure whether something belongs in the current phase | `platform-scope-checker` | Assess MVP scope, hidden complexity, include/defer decisions, and phase boundaries. |
-| The document is written and needs review | `platform-prd-reviewer` | Check logic closure, ownership, flow, data/API readiness, edge cases, operations, rollout risk, and open questions. |
-| You need to model flows, states, or exception paths | `platform-flow-modeler` | Model main flows, exception flows, state transitions, callbacks, rollback, reconciliation, and manual fallback. |
-
-In short:
-
-- Not clear on direction yet: use `platform-product-guide`
-- Ready to write: use `platform-prd-builder`
-- Unsure whether to include it now: use `platform-scope-checker`
-- Finished writing and need a review: use `platform-prd-reviewer`
-- Need to model flow/state paths: use `platform-flow-modeler`
-
-## What You Get From Each Skill
-
-| Skill | How to use it | Expected output |
-|---|---|---|
-| `platform-product-guide` | Use it when the problem is still blurry or the system direction needs shaping. Provide the business context, rough idea, or stakeholder ask. | A structured product direction: business problem, platform capability, system boundary, ownership, flow, key tradeoffs, open decisions, and next recommended artifact. |
-| `platform-prd-builder` | Use it when you already want to write or improve a PRD. Provide notes, meeting summaries, prototypes, existing drafts, or section goals. | A product-readable and engineering-ready PRD or requirement section, with scope, actors/systems, flows, requirements, API/data impact, edge cases, operations, risks, and open questions. |
-| `platform-scope-checker` | Use it before committing a change to the current phase. Provide the proposed change, current phase goal, and known constraints. | A clear include/simplify/validate/defer/reject recommendation, plus impact table, biggest risk, MVP boundary, and next validation or documentation step. |
-| `platform-prd-reviewer` | Use it after a PRD or draft exists. Provide the document and the desired review depth. | A product-logic-first review with overall readiness, blocking issues if any, must-fix product gaps, nice-to-improve items, RFC follow-up, open questions, and score/readiness judgment. |
-| `platform-flow-modeler` | Use it directly when flows are complex, or let the other skills call it for flow-heavy sections. Provide the scenario, systems, states, and known exceptions. | A flow model with actors/systems, main flow, exception flows, state transitions, callback/retry/timeout behavior, rollback, reconciliation, manual fallback, and open flow questions. |
-
-For best results, tell Codex the artifact type and review goal. For example: "This is a short feature PRD, please review for product logic and engineering readiness" or "This is a 0-to-1 platform PRD, please review strictly."
-
-## Use Cases
-
-This skill library is useful for:
-
-- writing PRDs from rough product notes, meeting notes, or prototypes
-- reviewing PRDs before product or engineering review
-- separating MVP scope from future iterations
-- modeling flows, states, callbacks, rollback, reconciliation, and manual fallback
-- turning business requirements into reusable platform capabilities
-- clarifying ownership, source of truth, status, flow, and operational risk
-- preparing requirement documents for engineering, QA, operations, risk, finance, or partner review
-- working on internal tools, workflow products, back-office systems, and fintech/platform product scenarios
-
-## Best Fit
-
-Best suited for:
-
-- product managers
-- platform product managers
-- fintech product teams
-- internal tool and back-office product teams
-- teams working on workflow, approval, configuration, risk, finance, operations, or cross-system products
-- product leaders who want AI to support structured thinking, decision quality, and requirement governance
-
-## Not Designed For
-
-These skills are not optimized for:
-
-- consumer marketing copy
-- pure UI visual critique
-- pure engineering implementation plans
-- generic startup idea brainstorming without product or system grounding
-- personal profiling or personality analysis
-
-## What This Library Optimizes For
-
-The skills are designed as reusable workflows rather than long prompts. Each skill now emphasizes:
-
-- clear trigger and non-use boundaries
-- operating modes for different request types
-- explicit output contracts
-- quality checks before final output
-- routing to the next suitable skill or artifact
-- progressive disclosure through optional `references/` files for detailed rubrics and templates
-
-## Keywords
-
-Codex skills, agent skills, product management, product manager AI, PRD, BRD, PRD review, product requirements, MVP scope, scope management, platform product, fintech product, internal tools, back-office systems, workflow systems, product operations, product governance, AI product management.
-
-Suggested GitHub topics:
+## See it work
 
 ```text
-codex-skills
-agent-skills
-product-management
-prd
-prd-review
-product-requirements
-platform-product
-scope-management
-mvp
-fintech
-internal-tools
-workflow
-back-office
-product-ops
-flow-modeling
-state-management
+You: 写个审批中心的 PRD，加个功能：申请人 cancel 时通知当前在审的审批人。
+
+It:  确认 3 点（其余我按合理默认走）：
+     1. 只通知当前在审层，还是下游 pending 层也通知？
+     2. cancel 原因是否必填？
+     3. 挂在母 PRD 哪一节下？
+     → 你答完，它出精简初稿 → 自动审一遍给就绪度和必改项 → 和你迭代到定稿。
 ```
 
-## Skills
+Hand it an existing PRD instead and ask "这主要写了什么、涉及哪些功能点改造" — it reads and gives you a digest plus an impact analysis. Same entry, different job.
 
-### `platform-product-orchestrator`
+## What it does for you
 
-Entry layer. Describe a product task in natural language and it classifies the intent, runs the right workflow, and uses the specialist skills below internally — you do not have to know which skill to pick.
+- **Turns a rough idea into a PRD** — clarify → draft → review → iterate, without the blank-page start.
+- **Reviews a PRD like a strict lead** — readiness score, concrete contradictions, must-fix gaps, what's PRD vs RFC.
+- **Explains an existing PRD** — what it covers, in seconds.
+- **Analyzes impact** — which systems and functions a change actually touches, and the hidden complexity.
+- **Guards your MVP** — should this be in scope now? include / simplify / defer, with the boundary drawn.
+- **Models the hard flows** — state, callbacks, rollback, reconciliation, ownership — before they bite you in review.
+- **Frames a fuzzy requirement** — into something you can actually write.
 
-Handles: writing a PRD, reviewing a PRD, understanding/summarizing an existing PRD, analyzing the functional-change impact of a PRD or proposed change, MVP scope decisions, cross-system flow modeling, and framing an unclear requirement.
+Built for the messy realities of platform, workflow, approval, configuration, risk, finance, and fintech back-office products — not generic PM advice. It scales itself: lean output for a small enhancement, full rigor for a 0-to-1 platform build. And it gets smoother the more you use it — it remembers your style and your systems (kept in your own private space, never in this repo), so over time it asks less and drafts closer to what you'd write.
 
-For the create-PRD flow it runs: clarify (only decision-driving questions) → draft → auto-review → iterate → optional save. It defaults to a lean, change-oriented output for small enhancements and the full structure only for 0-to-1 / cross-system work.
+## Quick start
 
-**Making it the default entry (optional).** Skills auto-trigger from their description, but with several same-domain skills you can bias routing to the orchestrator by adding a rule to your `~/.claude/CLAUDE.md` (Claude Code) or your agent's project instructions:
+**1. Install** — clone once, copy into your tool's skills directory:
+
+```bash
+git clone https://github.com/linyindong/platform-product-skills.git
+cd platform-product-skills
+
+# Claude Code → ~/.claude/skills   |   Codex → ~/.codex/skills
+DEST=~/.claude/skills
+mkdir -p "$DEST"
+cp -R skills/platform-product-orchestrator "$DEST"/
+cp -R skills/platform-product-guide        "$DEST"/
+cp -R skills/platform-prd-builder          "$DEST"/
+cp -R skills/platform-prd-reviewer         "$DEST"/
+cp -R skills/platform-scope-checker        "$DEST"/
+cp -R skills/platform-flow-modeler         "$DEST"/
+```
+
+**2. Just say what you want.** No skill to pick, nothing to configure — your product deputy is the default entry:
+
+```text
+写个审批中心的 PRD，加个功能：申请人 cancel 时通知当前在审的审批人。
+这份 PRD 帮我看看主要写了什么，可能涉及哪些功能点改造。[paste/attach PRD]
+这个改动要不要放进本期？[change]
+```
+
+**3. (Optional) enforce deputy-first.** It's already the default out of the box. If you want a hard guarantee, add this to your `~/.claude/CLAUDE.md` (Claude Code) or your agent's project instructions:
 
 ```md
 For platform / back-office / workflow / fintech product tasks described in
@@ -150,307 +72,58 @@ point; it drives the specialist skills internally. Use a specialist skill
 directly only when I name it or invoke it with `/`.
 ```
 
-Personalization (your output style, domain context, team conventions) belongs in your own private memory / context, not in this public repo — the orchestrator reads it at runtime to get smoother the more you use it.
-
-### `platform-product-guide`
-
-Core operating rules for complex product collaboration.
-
-Use for:
-
-- platform capability abstraction
-- system-boundary reasoning
-- reuse-first design
-- flow-first thinking
-- operational risk analysis
-- MVP boundary control
-- decision support
-- challenge mode
-
-### `platform-prd-builder`
-
-Build professional PRDs or requirement sections from rough Chinese/English notes, prototypes, meeting notes, or early ideas.
-
-Use for:
-
-- structured PRD drafting
-- English PRD / BRD writing
-- 0-to-1 platform requirement framing
-- API / Data / Scenario / Ops section structuring
-- product-readable requirement enrichment
-
-### `platform-prd-reviewer`
-
-Review PRDs for product and system completeness.
-
-Use for:
-
-- logic closure review
-- ownership review
-- flow and state review
-- data model review
-- API readiness review
-- operational gap review
-- rollout risk review
-
-### `platform-scope-checker`
-
-Assess MVP scope, phase boundaries, change impact, and hidden complexity.
-
-Use for:
-
-- MVP vs future iteration decisions
-- impact analysis before drafting
-- include / defer / placeholder recommendations
-- workflow, permission, UI, API, operations, and migration impact checks
-
-### `platform-flow-modeler`
-
-Model cross-system flows, states, exception paths, and operational closure.
-
-Use for:
-
-- main flow and exception flow modeling
-- lifecycle and state transition tables
-- callback / retry / timeout clarification
-- rollback / cancellation / resubmission semantics
-- reconciliation, migration, and manual fallback paths
-- flow evidence for PRD writing, scope decisions, and PRD review
-
-## Installation
-
-Clone this repository:
-
-```bash
-git clone https://github.com/linyindong/platform-product-skills.git
-cd platform-product-skills
-```
-
-Then copy the desired skill folders into your tool's skills directory. Both tools read the same `SKILL.md`, so one repo serves both.
-
-**Codex** — install into `~/.codex/skills`:
-
-```bash
-mkdir -p ~/.codex/skills
-cp -R skills/platform-product-guide ~/.codex/skills/
-cp -R skills/platform-prd-builder ~/.codex/skills/
-cp -R skills/platform-prd-reviewer ~/.codex/skills/
-cp -R skills/platform-scope-checker ~/.codex/skills/
-cp -R skills/platform-flow-modeler ~/.codex/skills/
-cp -R skills/platform-product-orchestrator ~/.codex/skills/
-```
-
-**Claude Code** — install into `~/.claude/skills` (works for the Claude Code CLI, desktop app, and claude.ai/code):
-
-```bash
-mkdir -p ~/.claude/skills
-cp -R skills/platform-product-guide ~/.claude/skills/
-cp -R skills/platform-prd-builder ~/.claude/skills/
-cp -R skills/platform-prd-reviewer ~/.claude/skills/
-cp -R skills/platform-scope-checker ~/.claude/skills/
-cp -R skills/platform-flow-modeler ~/.claude/skills/
-cp -R skills/platform-product-orchestrator ~/.claude/skills/
-```
-
-You can install all skills, or only copy the ones you want to use. The `agents/openai.yaml` inside each skill is Codex-only UI metadata; other tools ignore it, so copying the whole folder is safe either way.
-
-## How to Use
-
-The same skills are invoked slightly differently per tool:
-
-- **Codex** — mention the skill explicitly with `$skill-name`, e.g. `$platform-prd-builder`.
-- **Claude Code** — skills trigger automatically from their `description` when your request matches, or you can invoke one explicitly by name, e.g. `/platform-prd-builder`.
-
-The `$name` syntax below is Codex-specific; in Claude Code just describe the task, or use `/skill-name`.
-
-The simplest way to try a skill in any AI tool is to paste the GitHub skill link and your task:
+## How it works
 
 ```text
-Use this skill: https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-prd-reviewer
-Review this PRD: [paste or attach PRD]
+You (natural language)
+  -> platform-product-orchestrator   (understands intent, routes, controls the flow)
+       -> specialist skills           (each does one kind of work well)
+  -> your private memory / context    (your style & domain — makes it smoother over time)
 ```
 
-Copy-ready examples:
+The product deputy is the entry brain; the specialists are the capabilities it calls; your personalization lives in your own private memory (never in this repo) and is read at runtime. You can also call any specialist directly when you already know what you want.
 
-```text
-Use this skill: https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-product-guide
-Help me clarify this platform requirement: [context]
+## The specialist skills
 
-Use this skill: https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-prd-builder
-Turn these notes into a PRD: [notes]
+You normally don't call these yourself. Name one (or use `/skill-name`) when you want it directly.
 
-Use this skill: https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-prd-reviewer
-Review this PRD: [PRD]
-
-Use this skill: https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-scope-checker
-Assess whether this change should be included in the current phase: [change]
-
-Use this skill: https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-flow-modeler
-Model the flow for this cross-system requirement: [scenario]
-```
-
-Examples:
-
-```text
-Use $platform-product-guide to reason through this platform requirement.
-Use $platform-prd-builder to turn these rough notes into a PRD section.
-Use $platform-prd-reviewer to check whether this PRD is logically complete.
-Use $platform-scope-checker to assess whether this change belongs in Phase 1.
-Use $platform-flow-modeler to model the main flow, exception flows, state transitions, callbacks, rollback, and reconciliation.
-```
-
-Chinese prompts also work:
-
-```text
-用 $platform-product-guide 帮我从业务问题到平台能力梳理这个需求。
-用 $platform-prd-builder 把下面内容整理成英文 PRD。
-用 $platform-prd-reviewer 检查这份 PRD 是否逻辑闭环。
-用 $platform-scope-checker 判断这个能力是否应该进 Phase 1。
-用 $platform-flow-modeler 梳理 main flow、exception flow、状态流转、callback、rollback 和 reconciliation。
-```
-
-## Example Prompts
-
-```text
-Use $platform-product-guide to clarify this cross-system requirement before we write a PRD.
-Use $platform-prd-builder to turn these meeting notes into a platform PRD.
-Use $platform-scope-checker to decide whether this workflow change belongs in MVP.
-Use $platform-prd-reviewer to review this PRD for product logic and engineering readiness.
-Use $platform-flow-modeler to model the lifecycle, exception paths, callbacks, rollback, and manual fallback for this cross-system workflow.
-```
-
-For stronger results, include the product context, current phase, target audience, and whether you want a quick pass or a strict review.
-
-## Works With
-
-These skills are cross-tool. They use the standard `SKILL.md` format (YAML frontmatter with `name` + `description`, plus a markdown body), which is shared by both **Codex** (`~/.codex/skills`) and **Claude Code** (`~/.claude/skills` — CLI, desktop app, and claude.ai/code). Clone once and install into either or both.
-
-They can also be reused as structured markdown instructions in any other AI agent that supports custom skills, project instructions, or file-based context. In those environments, load or paste the relevant `SKILL.md` and ask the agent to follow it.
-
-### Repository Layout
-
-Each skill folder is self-contained:
-
-| File | Read by | Role |
-|---|---|---|
-| `SKILL.md` | All tools | The skill itself: trigger `description` + operating rules. Single source of truth. |
-| `references/*.md` | All tools | Detailed rubrics/templates, loaded on demand (progressive disclosure). |
-| `agents/openai.yaml` | Codex only | Codex UI metadata (display name, default prompt). Optional; other tools safely ignore it. |
-
-Because the shared `SKILL.md` drives behavior in every tool, an improvement committed here reaches Codex and Claude Code alike.
-
-## Suggested Workflow
-
-This is the recommended sequence for a new complex platform requirement, from ambiguity to reviewed PRD. Steps 2 and 4 are optional, and you can enter at any step.
-
-```text
-Step 1  Direction unclear?
-        -> platform-product-guide
-        Clarify business problem, system boundary, reusable capability,
-        flow direction, ownership, and rollout considerations.
-        Output: decision brief, assumption list, or flow sketch.
-
-Step 2  Need to model flows before writing?
-        -> platform-flow-modeler
-        Model main flow, exception flows, state transitions, callbacks,
-        rollback, reconciliation, and open flow questions.
-        Output: flow tables, state transition, open decisions.
-        Skip if the requirement has no meaningful cross-system flow complexity.
-
-Step 3  Ready to write the PRD?
-        -> platform-prd-builder
-        Turn flow model, notes, prototypes, or meeting inputs into a
-        structured PRD or requirement section.
-        Output: product-readable, engineering-reviewable PRD with
-        scenarios, acceptance criteria, and open questions.
-
-Step 4  Unsure whether to include something in this phase?
-        -> platform-scope-checker
-        Get a verdict: Include / Simplify / Validate / Defer / Reject,
-        with impact table and MVP boundary.
-        Use before Step 3 or mid-draft when scope questions arise.
-
-Step 5  PRD written and needs a quality check?
-        -> platform-prd-reviewer
-        Review for document quality, logic closure, ownership, flow
-        completeness, data/API readiness, operations, and RFC follow-up.
-        Output: Overall Assessment, Fatal Issues, Must Improve, Score.
-```
-
-Quick reference:
-
-| Situation | Skill |
+| Skill | Does |
 |---|---|
-| Direction and system framing unclear | `platform-product-guide` |
-| 3+ systems, callbacks, or state transitions involved | `platform-flow-modeler` |
-| Ready to draft a PRD or requirement section | `platform-prd-builder` |
-| Unsure whether this belongs in the current phase | `platform-scope-checker` |
-| PRD written; need a review before product or engineering review | `platform-prd-reviewer` |
+| `platform-product-orchestrator` | Your product deputy — the entry layer; classifies intent and drives the rest. |
+| `platform-product-guide` | Direction framing, platform-capability abstraction, ownership/source-of-truth reasoning. |
+| `platform-prd-builder` | Draft or rewrite PRDs / requirement sections from rough input. |
+| `platform-prd-reviewer` | Review PRDs — readiness, document-specific findings, consistency, RFC boundary. |
+| `platform-scope-checker` | MVP scope, hidden complexity, impact analysis, include / simplify / defer. |
+| `platform-flow-modeler` | Cross-system flows, state, callback / rollback / reconciliation, ownership. |
 
-Typical prompts:
+## Works with
 
-Direction:
+Cross-tool by design — standard `SKILL.md` format (YAML frontmatter `name` + `description` + markdown body), shared by **Codex** (`~/.codex/skills`) and **Claude Code** (`~/.claude/skills`). Also reusable in any agent that supports file-based custom skills.
 
-```text
-Use $platform-product-guide to clarify the business problem, system boundary, reusable platform capability, flow, runtime objects, API/data changes, and rollout considerations.
-```
-
-Flow:
-
-```text
-Use $platform-flow-modeler to model the main flow, exception flows, state transitions, callbacks, rollback, reconciliation, and open flow questions before we write the PRD.
-```
-
-PRD:
-
-```text
-Use $platform-prd-builder to turn the following notes into a structured PRD. Do not simply translate; reorganize and enrich the content where needed.
-```
-
-Scope:
-
-```text
-Use $platform-scope-checker to assess whether this change should be included in the current phase. Give an impact table and a clear include/defer/placeholder recommendation.
-```
-
-Review:
-
-```text
-Use $platform-prd-reviewer to review this PRD. Focus on logic closure, ownership, flow, data model, edge cases, operations, rollout, and open questions.
-```
+Each skill folder is self-contained: `SKILL.md` is the skill (read by all tools), `references/*.md` holds detailed rubrics loaded on demand, and `agents/openai.yaml` is Codex-only UI metadata that other tools ignore. An improvement committed here reaches every tool at once.
 
 ## Updating
 
-To update installed skills after this repository changes, `git pull`, then re-copy into the directory for your tool — `~/.codex/skills` for Codex, `~/.claude/skills` for Claude Code:
-
 ```bash
 git pull
-# set DEST to ~/.codex/skills (Codex) or ~/.claude/skills (Claude Code)
-DEST=~/.claude/skills
-cp -R skills/platform-product-guide "$DEST"/
-cp -R skills/platform-prd-builder "$DEST"/
-cp -R skills/platform-prd-reviewer "$DEST"/
-cp -R skills/platform-scope-checker "$DEST"/
-cp -R skills/platform-flow-modeler "$DEST"/
-cp -R skills/platform-product-orchestrator "$DEST"/
+DEST=~/.claude/skills   # or ~/.codex/skills
+for s in platform-product-orchestrator platform-product-guide platform-prd-builder \
+         platform-prd-reviewer platform-scope-checker platform-flow-modeler; do
+  cp -R "skills/$s" "$DEST"/
+done
 ```
 
-If you only use one skill, copy only that folder.
+## Who it's for
 
-## Design Principles
+Product managers, platform/fintech PMs, and internal-tool / back-office teams working on workflow, approval, configuration, risk, finance, operations, or cross-system products — anyone who wants AI to think through the product with them, not just format a document.
 
-These skills intentionally avoid personal profiling. They focus on observable working behavior and collaboration patterns:
-
-- platform thinking
-- scope discipline
-- clear ownership
-- flow-first product reasoning
-- operational sustainability
-- direct and structured communication
+Not built for consumer marketing copy, pure UI critique, pure engineering implementation plans, or ungrounded brainstorming.
 
 ## License
 
-Released under the [MIT License](LICENSE). You are free to use, modify, and redistribute these skills, including commercially, provided the copyright notice is retained.
+Released under the [MIT License](LICENSE). Use, modify, and redistribute freely (including commercially); keep the copyright notice.
+
+Keywords: agent skills, Codex skills, Claude Code skills, product management, PRD, PRD review, MVP scope, platform product, fintech, internal tools, workflow, back-office, product ops, flow modeling.
 
 ---
 
@@ -460,152 +133,66 @@ Released under the [MIT License](LICENSE). You are free to use, modify, and redi
 
 语言：[English](#english) | [中文](#中文)
 
-Platform Product Skills 是一组**跨工具**的 skills——同一份 `SKILL.md` 在 Codex 和 Claude Code（CLI、桌面 App、claude.ai/code）里都能用——面向平台型产品、中后台、流程产品和金融科技产品团队，用于结构化产品协作、PRD 编写、PRD Review、MVP 范围控制和跨系统协作。
+**你的 AI 产品副手，专为平台与中后台工作打造 —— 你说清要做什么，它带你从一个粗糙想法走到一份审过的 PRD。**
 
-这个仓库包含 5 个专项 skills，外加 1 个统一入口编排器，把它们变成"一句自然语言即可驱动"的入口：
+写 PRD、评审、划 MVP 边界、理跨系统流程、追 ownership 和 edge case —— 中后台产品的活又碎又重，还容易漏。这是一套帮你一起扛的 skill 系统。
 
-- `platform-product-orchestrator` —— 入口层：你用自然语言描述任务，它自动路由到对应的专项 skill
-- `platform-product-guide`
-- `platform-prd-builder`
-- `platform-scope-checker`
-- `platform-prd-reviewer`
-- `platform-flow-modeler`
+你不用挑工具、不用记命令。你只用大白话跟一个**产品副手**（技术名 `platform-product-orchestrator`）说话，它判断你要什么、只问真正影响决策的问题、在背后驱动对应的专项 skill。**Codex 和 Claude Code**（CLI、桌面、claude.ai/code）都能用。
 
-你可以只跟编排器说话、让它来选；也可以在已经知道要用哪个时，直接调用对应的专项 skill。
-
-这些 skills 主要适用于复杂产品和平台型产品场景，例如：
-
-- 复杂需求从 0 到 1 梳理
-- 平台能力抽象
-- 跨系统协作
-- PRD 编写与审查
-- MVP 范围控制
-- 产品决策支持
-- 产品治理和长期知识沉淀
-
-它们的目标不是生成通用 PM 文档，而是帮助 AI 按照更稳定的产品操作逻辑进行协作：
-
-- 从业务问题抽象到平台能力
-- 明确系统边界和 owner
-- 优先复用已有能力
-- 先梳理 flow，再写需求
-- 关注状态、数据模型、API、edge cases 和运营闭环
-- 控制 MVP 范围，避免隐藏 scope expansion
-- 在 PRD review 中主动挑战逻辑缺口
-
-## 快速理解：什么时候用哪个 Skill？
-
-这些 skills 对应一个需求从想清楚到写出来、控范围、建模 flow、再 review 的不同阶段：
-
-| 场景 | 使用哪个 skill | 它主要帮你做什么 |
-|---|---|---|
-| 还没想清楚方向 | `platform-product-guide` | 梳理业务问题、系统边界、平台能力、flow、ownership 和运营闭环。 |
-| 已经要写文档 | `platform-prd-builder` | 把粗略想法、会议记录、原型或零散笔记整理成结构化 PRD/BRD。 |
-| 不确定要不要做、或本期做多少 | `platform-scope-checker` | 判断 MVP 范围、隐藏复杂度、include/defer、阶段边界。 |
-| 文档写完要检查 | `platform-prd-reviewer` | 检查逻辑闭环、owner、flow、API/data、edge cases、运营和 rollout 风险。 |
-| 需要梳理 flow、状态或异常路径 | `platform-flow-modeler` | 梳理 main flow、exception flow、state transition、callback、rollback、reconciliation 和 manual fallback。 |
-
-简单记：
-
-- 还没想清楚方向：用 `platform-product-guide`
-- 已经要写文档：用 `platform-prd-builder`
-- 不确定要不要做/本期做多少：用 `platform-scope-checker`
-- 文档写完要检查：用 `platform-prd-reviewer`
-- 需要梳理 flow/state 路径：用 `platform-flow-modeler`
-
-## 每个 Skill 使用后会得到什么？
-
-| Skill | 怎么使用 | 预期输出 |
-|---|---|---|
-| `platform-product-guide` | 当问题还没想清楚，或系统方向需要梳理时使用。提供业务背景、粗略想法或 stakeholder ask。 | 一份结构化产品方向：业务问题、平台能力、系统边界、ownership、flow、关键 tradeoff、开放决策和下一步建议产物。 |
-| `platform-prd-builder` | 已经准备写 PRD 或优化文档时使用。提供笔记、会议记录、原型、已有草稿或章节目标。 | 一份产品可读、研发可评审的 PRD 或 requirement section，包含 scope、actors/systems、flows、requirements、API/data impact、edge cases、operations、risks 和 open questions。 |
-| `platform-scope-checker` | 在决定某个改动是否进入当前 phase 前使用。提供 proposed change、当前 phase goal 和已知约束。 | 一个明确的 include/simplify/validate/defer/reject 建议，并附 impact table、biggest risk、MVP boundary 和下一步验证或文档动作。 |
-| `platform-prd-reviewer` | 已经有 PRD 或草稿后使用。提供文档和希望 review 的深度。 | 一份 product-logic-first review，包含 overall readiness、blocking issues、must-fix product gaps、nice-to-improve、RFC follow-up、open questions 和 score/readiness judgment。 |
-| `platform-flow-modeler` | flow 比较复杂时直接使用，也可以被其他 skills 在 flow-heavy 章节中调用。提供场景、系统、状态和已知异常。 | 一份 flow model，包含 actors/systems、main flow、exception flows、state transitions、callback/retry/timeout、rollback、reconciliation、manual fallback 和 open flow questions。 |
-
-效果更好的做法：告诉 Codex 文档类型和 review 目标。例如：“这是一个短小功能 PRD，重点看产品逻辑和研发评审准备度”，或者“这是一个 0-to-1 平台 PRD，请严格 review”。
-
-## 主要使用场景
-
-这组 skills 适合用于：
-
-- 从零散产品笔记、会议记录、原型整理 PRD
-- 在产品评审或研发评审前 Review PRD
-- 拆分 MVP 范围和 future iteration
-- 梳理跨系统 flow、状态流转、callback、rollback、reconciliation 和 manual fallback
-- 从业务需求抽象平台能力
-- 梳理 ownership、source of truth、状态、flow 和运营风险
-- 为研发、QA、运营、风控、财务或外部合作方评审准备需求材料
-- 中后台、内部工具、流程产品、金融科技或平台型产品场景
-
-## 最适合的人群和团队
-
-适合：
-
-- 产品经理
-- 平台产品经理
-- 金融科技产品团队
-- 中后台 / 内部工具产品团队
-- 做审批、配置、风控、财务、运营、流程或跨系统协作的团队
-- 希望 AI 不只是写文档，而是参与结构化思考、决策支持和需求治理的产品负责人
-
-## 不适合的场景
-
-这组 skills 不主要用于：
-
-- 消费品营销文案
-- 纯 UI 视觉评审
-- 纯研发实现方案
-- 没有产品或系统背景的泛创业点子 brainstorming
-- 个人画像或性格分析
-
-## 这组 Skills 优化的重点
-
-这组 skills 不是单纯的长 Prompt，而是可复用的工作流。当前版本重点强化：
-
-- 清晰的触发条件和不适用边界
-- 针对不同请求类型的 operating modes
-- 明确的 output contract
-- 输出前的质量检查
-- 到下一个合适 skill 或 artifact 的路由
-- 通过 `references/` 做渐进式加载，把详细 rubric 和模板放在需要时再读
-
-## 关键词
-
-Codex skills、agent skills、产品经理、AI 产品经理、PRD、BRD、PRD Review、产品需求、MVP 范围控制、scope management、平台型产品、金融科技产品、中后台、内部工具、流程系统、产品运营、产品治理、AI 产品协作。
-
-建议 GitHub topics：
+## 看它怎么跑
 
 ```text
-codex-skills
-agent-skills
-product-management
-prd
-prd-review
-product-requirements
-platform-product
-scope-management
-mvp
-fintech
-internal-tools
-workflow
-back-office
-product-ops
-flow-modeling
-state-management
+你： 写个审批中心的 PRD，加个功能：申请人 cancel 时通知当前在审的审批人。
+
+它： 确认 3 点（其余我按合理默认走）：
+     1. 只通知当前在审层，还是下游 pending 层也通知？
+     2. cancel 原因是否必填？
+     3. 挂在母 PRD 哪一节下？
+     → 你答完，它出精简初稿 → 自动审一遍给就绪度和必改项 → 和你迭代到定稿。
 ```
 
-## Skills
+换成给它一份现成 PRD、问"这主要写了什么、涉及哪些功能点改造"——它读完给你一份摘要加一份影响分析。同一个入口，换一种活。
 
-### `platform-product-orchestrator`
+## 它能帮你做什么
 
-入口层。用自然语言描述一个产品任务，它判断意图、选对流程，并在背后调用下面的专项 skill —— 你不用知道该选哪个。
+- **把粗糙想法变成 PRD** —— 澄清 → 出稿 → 审核 → 迭代，告别空白页开局。
+- **像严格的 lead 一样评审** —— 就绪度打分、具体矛盾、必改项、哪些是 PRD、哪些该进 RFC。
+- **看懂一份现成 PRD** —— 它主要写了什么，几秒说清。
+- **分析影响** —— 一个改动到底动了哪些系统和功能，以及隐藏复杂度。
+- **守住你的 MVP** —— 这个要不要本期做？include / 简化 / 延后，边界给你划好。
+- **啃下难缠的流程** —— 状态、callback、rollback、对账、ownership —— 赶在评审咬你之前。
+- **理清模糊需求** —— 变成真正能动笔写的东西。
 
-覆盖：写 PRD、审 PRD、解读/摘要已有 PRD、分析 PRD 或某个改动涉及的功能点改造、MVP 范围判断、跨系统 flow 建模、方向梳理。
+它是为平台、流程、审批、配置、风控、财务、金融科技中后台这些真实的复杂场景做的 —— 不是泛泛的 PM 建议。它会自动伸缩：小增强给精简产出，0-to-1 平台上完整严谨结构。而且**越用越顺** —— 它记得你的风格和你的系统（存在你自己的私有空间里，绝不进本仓库），时间久了问得越少、初稿越接近你会写的样子。
 
-写 PRD 时它走：澄清（只问影响决策的问题）→ 出稿 → 自动审核 → 迭代 → 可选落盘。小增强默认走精简、变更导向的体例，只有 0-to-1 / 跨系统才上完整结构。
+## 快速上手
 
-**把它设成默认入口（可选）。** skill 靠 description 自动触发，但同域 skill 较多时，可在 `~/.claude/CLAUDE.md`（Claude Code）或你所用 agent 的项目指令里加一条规则，把路由偏向编排器：
+**1. 安装** —— clone 一次，复制到你工具的 skills 目录：
+
+```bash
+git clone https://github.com/linyindong/platform-product-skills.git
+cd platform-product-skills
+
+# Claude Code → ~/.claude/skills   |   Codex → ~/.codex/skills
+DEST=~/.claude/skills
+mkdir -p "$DEST"
+cp -R skills/platform-product-orchestrator "$DEST"/
+cp -R skills/platform-product-guide        "$DEST"/
+cp -R skills/platform-prd-builder          "$DEST"/
+cp -R skills/platform-prd-reviewer         "$DEST"/
+cp -R skills/platform-scope-checker        "$DEST"/
+cp -R skills/platform-flow-modeler         "$DEST"/
+```
+
+**2. 直接说你想做什么。** 不用挑 skill、不用配置 —— 产品副手就是默认入口：
+
+```text
+写个审批中心的 PRD，加个功能：申请人 cancel 时通知当前在审的审批人。
+这份 PRD 帮我看看主要写了什么，可能涉及哪些功能点改造。[粘贴/上传 PRD]
+这个改动要不要放进本期？[改动]
+```
+
+**3.（可选）强制副手优先。** 它开箱就是默认入口。如果你想要硬保证，可在 `~/.claude/CLAUDE.md`（Claude Code）或你所用 agent 的项目指令里加一条：
 
 ```md
 产品/中后台/流程/金融科技类任务，用自然语言描述时，默认走
@@ -613,302 +200,55 @@ platform-product-orchestrator，由它在背后调用各专项 skill；只有当
 显式点名或用 / 调用时，才直接用某个专项 skill。
 ```
 
-个性化（你的输出风格、领域背景、团队惯例）应放在你自己的私有记忆/上下文里，不进这个公开仓库 —— 编排器运行时读取它，从而越用越顺。
-
-### `platform-product-guide`
-
-复杂产品协作的核心操作系统。
-
-适用于：
-
-- 从业务问题抽象平台能力
-- 梳理系统边界和 ownership
-- 判断复用已有能力还是新建能力
-- 进行 flow-first 产品思考
-- 分析运营风险和 rollout 风险
-- 做 MVP 范围控制
-- 做决策支持和 challenge review
-
-### `platform-prd-builder`
-
-把粗颗粒度想法、中文/英文笔记、会议记录或原型内容整理成专业 PRD 或 requirement section。
-
-适用于：
-
-- rough notes 到结构化 PRD
-- 英文 PRD / BRD 起草
-- 0-to-1 平台能力需求框架搭建
-- API / Data / Scenario / Ops 章节整理
-- 产品可读、研发可执行的需求文档补全
-
-### `platform-prd-reviewer`
-
-审查 PRD 是否具备产品和系统层面的完整性。
-
-适用于：
-
-- 检查逻辑是否闭环
-- 检查系统 ownership 是否清晰
-- 检查 flow、状态机和 edge cases
-- 检查数据模型是否支撑前端/运营/下游需要
-- 检查 API readiness
-- 检查 reconciliation、audit、rollout、manual fallback 等运营缺口
-
-### `platform-scope-checker`
-
-判断需求是否应进入当前 phase，并评估隐藏复杂度。
-
-适用于：
-
-- MVP vs future iteration 判断
-- 写 PRD 前先做影响分析
-- 判断 include / defer / placeholder
-- 评估 workflow、permission、UI、API、operations、migration 影响
-
-### `platform-flow-modeler`
-
-梳理跨系统 flow、状态、异常路径和运营闭环。
-
-适用于：
-
-- main flow 和 exception flow 建模
-- lifecycle 和 state transition 表格
-- callback / retry / timeout 梳理
-- rollback / cancellation / resubmission 语义定义
-- reconciliation、migration 和 manual fallback 路径
-- 为 PRD 编写、范围判断、PRD review 提供 flow evidence
-
-## 安装方式
-
-先 clone 这个仓库：
-
-```bash
-git clone https://github.com/linyindong/platform-product-skills.git
-cd platform-product-skills
-```
-
-再把需要的 skill 文件夹复制到对应工具的 skills 目录。两个工具读的是同一份 `SKILL.md`，一个仓库同时服务两边。
-
-**Codex** —— 安装到 `~/.codex/skills`：
-
-```bash
-mkdir -p ~/.codex/skills
-cp -R skills/platform-product-guide ~/.codex/skills/
-cp -R skills/platform-prd-builder ~/.codex/skills/
-cp -R skills/platform-prd-reviewer ~/.codex/skills/
-cp -R skills/platform-scope-checker ~/.codex/skills/
-cp -R skills/platform-flow-modeler ~/.codex/skills/
-cp -R skills/platform-product-orchestrator ~/.codex/skills/
-```
-
-**Claude Code** —— 安装到 `~/.claude/skills`（CLI、桌面 App、claude.ai/code 通用）：
-
-```bash
-mkdir -p ~/.claude/skills
-cp -R skills/platform-product-guide ~/.claude/skills/
-cp -R skills/platform-prd-builder ~/.claude/skills/
-cp -R skills/platform-prd-reviewer ~/.claude/skills/
-cp -R skills/platform-scope-checker ~/.claude/skills/
-cp -R skills/platform-flow-modeler ~/.claude/skills/
-cp -R skills/platform-product-orchestrator ~/.claude/skills/
-```
-
-可以全部安装，也可以只复制自己需要的 skill。每个 skill 里的 `agents/openai.yaml` 是 Codex 专用的 UI 元数据，其它工具会忽略它，所以整个文件夹直接复制也没问题。
-
-## 使用方法
-
-同一套 skill 在不同工具里的调用方式略有差异：
-
-- **Codex** —— 用 `$skill-name` 显式调用，例如 `$platform-prd-builder`。
-- **Claude Code** —— 当你的请求匹配到 skill 的 `description` 时会自动触发，也可以用名字显式调用，例如 `/platform-prd-builder`。
-
-下面示例里的 `$name` 是 Codex 语法；在 Claude Code 里直接描述任务，或用 `/skill-name` 即可。
-
-最简单的试用方法：把 GitHub 上对应 skill 的链接发给 AI，再加上你的任务。
+## 它怎么运作
 
 ```text
-使用这个 skill：https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-prd-reviewer
-Review 一下这份 PRD：[粘贴或上传 PRD]
+你（自然语言）
+  -> platform-product-orchestrator   （听懂意图、路由、控流程）
+       -> 各专项 skill                （每个把一类活干好）
+  -> 你的私有记忆/上下文              （你的风格与领域 —— 越用越顺）
 ```
 
-可直接复制的例子：
+产品副手是入口大脑，专项 skill 是它调用的能力，你的个性化存在你自己的私有记忆里（绝不进本仓库）、运行时读取。你也可以在明确时直接调用某个专项 skill。
 
-```text
-使用这个 skill：https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-product-guide
-帮我梳理这个平台型需求方向：[背景]
+## 专项 skill 一览
 
-使用这个 skill：https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-prd-builder
-把这些笔记整理成 PRD：[笔记]
+通常不用你自己调。想直接用时，点名或用 `/skill-name`。
 
-使用这个 skill：https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-prd-reviewer
-Review 一下这份 PRD：[PRD]
-
-使用这个 skill：https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-scope-checker
-判断这个改动是否应该进入当前 phase：[改动]
-
-使用这个 skill：https://github.com/linyindong/platform-product-skills/tree/main/skills/platform-flow-modeler
-帮我梳理这个跨系统需求的 flow：[场景]
-```
-
-示例：
-
-```text
-Use $platform-product-guide to reason through this platform requirement.
-Use $platform-prd-builder to turn these rough notes into a PRD section.
-Use $platform-prd-reviewer to check whether this PRD is logically complete.
-Use $platform-scope-checker to assess whether this change belongs in Phase 1.
-Use $platform-flow-modeler to model the main flow, exception flows, state transitions, callbacks, rollback, and reconciliation.
-```
-
-中文请求也可以直接使用：
-
-```text
-用 $platform-product-guide 帮我从业务问题到平台能力梳理这个需求。
-用 $platform-prd-builder 把下面内容整理成英文 PRD。
-用 $platform-prd-reviewer 检查这份 PRD 是否逻辑闭环。
-用 $platform-scope-checker 判断这个能力是否应该进 Phase 1。
-用 $platform-flow-modeler 梳理 main flow、exception flow、状态流转、callback、rollback 和 reconciliation。
-```
-
-## 示例 Prompt
-
-```text
-Use $platform-product-guide to clarify this cross-system requirement before we write a PRD.
-Use $platform-prd-builder to turn these meeting notes into a platform PRD.
-Use $platform-scope-checker to decide whether this workflow change belongs in MVP.
-Use $platform-prd-reviewer to review this PRD for product logic and engineering readiness.
-Use $platform-flow-modeler to model the lifecycle, exception paths, callbacks, rollback, and manual fallback for this cross-system workflow.
-```
-
-效果更好的做法：同时提供产品背景、当前 phase、目标读者，以及你希望快速看一遍还是严格 review。
-
-## 支持哪些工具？
-
-这些 skill 是跨工具的。它们采用标准 `SKILL.md` 格式（YAML frontmatter 带 `name` + `description`，加 markdown 正文），**Codex**（`~/.codex/skills`）和 **Claude Code**（`~/.claude/skills`，含 CLI、桌面 App、claude.ai/code）共用同一份文件。Clone 一次，装到其中一个或两个都行。
-
-如果其他 AI 工具支持 custom skills、project instructions 或基于文件的上下文，也可以复用这些 skills。使用方式是读取或粘贴对应的 `SKILL.md`，并要求 AI 按其中规则执行。
-
-### 仓库结构
-
-每个 skill 文件夹自成一体：
-
-| 文件 | 谁读取 | 作用 |
-|---|---|---|
-| `SKILL.md` | 所有工具 | skill 本体：触发用的 `description` + 操作规则。唯一真相源。 |
-| `references/*.md` | 所有工具 | 详细 rubric/模板，按需加载（渐进式披露）。 |
-| `agents/openai.yaml` | 仅 Codex | Codex UI 元数据（显示名、默认 prompt）。可选，其它工具安全忽略。 |
-
-因为行为由共享的 `SKILL.md` 驱动，在这里提交的一处改进会同时生效于 Codex 和 Claude Code。
-
-## 推荐使用场景
-
-这是一个复杂平台型需求从模糊到 PRD review 的推荐流程。Step 2 和 Step 4 可选，也可以从任意步骤进入。
-
-```text
-Step 1  方向还不清楚？
-        -> platform-product-guide
-        梳理业务问题、系统边界、可复用平台能力、
-        flow 方向、ownership 和 rollout 考虑。
-        输出：decision brief、assumption list 或 flow sketch。
-
-Step 2  写 PRD 前需要先建模 flow？
-        -> platform-flow-modeler
-        梳理 main flow、exception flow、state transition、
-        callback、rollback、reconciliation 和 open questions。
-        输出：flow tables、state transition、open decisions。
-        如果没有明显跨系统 flow 复杂度，可以跳过。
-
-Step 3  已经准备写 PRD？
-        -> platform-prd-builder
-        把 flow model、笔记、原型或会议输入整理成
-        结构化 PRD 或 requirement section。
-        输出：产品可读、研发可评审的 PRD，包含 scenarios、
-        acceptance criteria 和 open questions。
-
-Step 4  不确定是否放进当前 phase？
-        -> platform-scope-checker
-        得到 Include / Simplify / Validate / Defer / Reject 判断，
-        并附 impact table 和 MVP boundary。
-        可在 Step 3 前使用，也可在写 PRD 中途使用。
-
-Step 5  PRD 写完需要质量检查？
-        -> platform-prd-reviewer
-        检查文档质量、逻辑闭环、ownership、flow 完整度、
-        data/API readiness、operations 和 RFC follow-up。
-        输出：Overall Assessment、Fatal Issues、Must Improve、Score。
-```
-
-快速参考：
-
-| 场景 | Skill |
+| Skill | 作用 |
 |---|---|
-| 方向和系统框架还不清楚 | `platform-product-guide` |
-| 涉及 3+ 系统、callback 或状态流转 | `platform-flow-modeler` |
-| 准备写 PRD 或 requirement section | `platform-prd-builder` |
-| 不确定是否进入当前 phase | `platform-scope-checker` |
-| PRD 已写完，需要产品/研发评审前检查 | `platform-prd-reviewer` |
+| `platform-product-orchestrator` | 你的产品副手 —— 入口层，判断意图并驱动其余。 |
+| `platform-product-guide` | 方向梳理、平台能力抽象、ownership/source-of-truth 推理。 |
+| `platform-prd-builder` | 从粗略输入起草或改写 PRD / 需求章节。 |
+| `platform-prd-reviewer` | 评审 PRD —— 就绪度、文档内具体问题、一致性、RFC 边界。 |
+| `platform-scope-checker` | MVP 范围、隐藏复杂度、影响分析、include / 简化 / 延后。 |
+| `platform-flow-modeler` | 跨系统 flow、状态、callback / rollback / 对账、ownership。 |
 
-典型 prompt：
+## 支持哪些工具
 
-方向：
+天生跨工具 —— 标准 `SKILL.md` 格式（YAML frontmatter `name` + `description` + markdown 正文），Codex（`~/.codex/skills`）和 Claude Code（`~/.claude/skills`）共用。也可复用于任何支持文件式自定义 skill 的 agent。
 
-```text
-Use $platform-product-guide to clarify the business problem, system boundary, reusable platform capability, flow, runtime objects, API/data changes, and rollout considerations.
-```
+每个 skill 文件夹自成一体：`SKILL.md` 是本体（所有工具读），`references/*.md` 是按需加载的详细 rubric，`agents/openai.yaml` 是 Codex 专用 UI 元数据、其它工具会忽略。在这里改一处，所有工具同时生效。
 
-Flow：
-
-```text
-Use $platform-flow-modeler to model the main flow, exception flows, state transitions, callbacks, rollback, reconciliation, and open flow questions before we write the PRD.
-```
-
-PRD：
-
-```text
-Use $platform-prd-builder to turn the following notes into a structured PRD. Do not simply translate; reorganize and enrich the content where needed.
-```
-
-Scope：
-
-```text
-Use $platform-scope-checker to assess whether this change should be included in the current phase. Give an impact table and a clear include/defer/placeholder recommendation.
-```
-
-Review：
-
-```text
-Use $platform-prd-reviewer to review this PRD. Focus on logic closure, ownership, flow, data model, edge cases, operations, rollout, and open questions.
-```
-
-## 更新方式
-
-当 GitHub 仓库后续更新后，`git pull`，再重新复制到对应工具的目录——Codex 用 `~/.codex/skills`，Claude Code 用 `~/.claude/skills`：
+## 更新
 
 ```bash
 git pull
-# DEST 设为 ~/.codex/skills（Codex）或 ~/.claude/skills（Claude Code）
-DEST=~/.claude/skills
-cp -R skills/platform-product-guide "$DEST"/
-cp -R skills/platform-prd-builder "$DEST"/
-cp -R skills/platform-prd-reviewer "$DEST"/
-cp -R skills/platform-scope-checker "$DEST"/
-cp -R skills/platform-flow-modeler "$DEST"/
-cp -R skills/platform-product-orchestrator "$DEST"/
+DEST=~/.claude/skills   # 或 ~/.codex/skills
+for s in platform-product-orchestrator platform-product-guide platform-prd-builder \
+         platform-prd-reviewer platform-scope-checker platform-flow-modeler; do
+  cp -R "skills/$s" "$DEST"/
+done
 ```
 
-如果只使用某一个 skill，只复制对应文件夹即可。
+## 适合谁
 
-## 设计原则
+产品经理、平台/金融科技 PM、中后台/内部工具团队，做审批、配置、风控、财务、运营、流程或跨系统产品的人 —— 希望 AI 和你一起把产品想透，而不只是帮你排版文档。
 
-这些 skills 刻意避免个人画像或性格分析，只关注可观察的工作行为和协作模式：
-
-- 平台化思考
-- 范围控制
-- ownership 清晰
-- flow-first 产品推理
-- 运营可持续性
-- 实用、直接、结构化的沟通
+不适合：消费品营销文案、纯 UI 视觉评审、纯工程实现方案、没有产品/系统背景的泛点子 brainstorming。
 
 ## License
 
 采用 [MIT License](LICENSE) 开源。可自由使用、修改、再分发（含商用），保留版权声明即可。
+
+关键词：agent skills、Codex skills、Claude Code skills、产品经理、PRD、PRD Review、MVP 范围、平台型产品、金融科技、中后台、内部工具、流程、产品运营、flow 建模。

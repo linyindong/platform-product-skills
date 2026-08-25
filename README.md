@@ -8,13 +8,16 @@ Platform Product Skills is a cross-tool skills library — works in both Codex a
 
 It is especially useful for product teams working on complex requirements, platform capabilities, workflow products, internal tools, back-office systems, fintech/platform products, and engineering-readiness review.
 
-The repository currently includes four core Codex skills and one specialist flow-modeling skill:
+The repository includes five specialist skills plus one top-level orchestrator that turns them into a single natural-language entry point:
 
+- `platform-product-orchestrator` — entry layer: describe a task in natural language, it routes to the right specialist(s)
 - `platform-product-guide`
 - `platform-prd-builder`
 - `platform-scope-checker`
 - `platform-prd-reviewer`
 - `platform-flow-modeler`
+
+You can talk to the orchestrator and let it choose, or invoke any specialist skill directly when you already know which one you want.
 
 The goal is not to generate generic PM documentation. The goal is to help AI collaborate with a more stable product operating logic:
 
@@ -130,6 +133,25 @@ state-management
 
 ## Skills
 
+### `platform-product-orchestrator`
+
+Entry layer. Describe a product task in natural language and it classifies the intent, runs the right workflow, and uses the specialist skills below internally — you do not have to know which skill to pick.
+
+Handles: writing a PRD, reviewing a PRD, understanding/summarizing an existing PRD, analyzing the functional-change impact of a PRD or proposed change, MVP scope decisions, cross-system flow modeling, and framing an unclear requirement.
+
+For the create-PRD flow it runs: clarify (only decision-driving questions) → draft → auto-review → iterate → optional save. It defaults to a lean, change-oriented output for small enhancements and the full structure only for 0-to-1 / cross-system work.
+
+**Making it the default entry (optional).** Skills auto-trigger from their description, but with several same-domain skills you can bias routing to the orchestrator by adding a rule to your `~/.claude/CLAUDE.md` (Claude Code) or your agent's project instructions:
+
+```md
+For platform / back-office / workflow / fintech product tasks described in
+natural language, use `platform-product-orchestrator` as the default entry
+point; it drives the specialist skills internally. Use a specialist skill
+directly only when I name it or invoke it with `/`.
+```
+
+Personalization (your output style, domain context, team conventions) belongs in your own private memory / context, not in this public repo — the orchestrator reads it at runtime to get smoother the more you use it.
+
 ### `platform-product-guide`
 
 Core operating rules for complex product collaboration.
@@ -215,6 +237,7 @@ cp -R skills/platform-prd-builder ~/.codex/skills/
 cp -R skills/platform-prd-reviewer ~/.codex/skills/
 cp -R skills/platform-scope-checker ~/.codex/skills/
 cp -R skills/platform-flow-modeler ~/.codex/skills/
+cp -R skills/platform-product-orchestrator ~/.codex/skills/
 ```
 
 **Claude Code** — install into `~/.claude/skills` (works for the Claude Code CLI, desktop app, and claude.ai/code):
@@ -226,6 +249,7 @@ cp -R skills/platform-prd-builder ~/.claude/skills/
 cp -R skills/platform-prd-reviewer ~/.claude/skills/
 cp -R skills/platform-scope-checker ~/.claude/skills/
 cp -R skills/platform-flow-modeler ~/.claude/skills/
+cp -R skills/platform-product-orchestrator ~/.claude/skills/
 ```
 
 You can install all skills, or only copy the ones you want to use. The `agents/openai.yaml` inside each skill is Codex-only UI metadata; other tools ignore it, so copying the whole folder is safe either way.
@@ -408,6 +432,7 @@ cp -R skills/platform-prd-builder "$DEST"/
 cp -R skills/platform-prd-reviewer "$DEST"/
 cp -R skills/platform-scope-checker "$DEST"/
 cp -R skills/platform-flow-modeler "$DEST"/
+cp -R skills/platform-product-orchestrator "$DEST"/
 ```
 
 If you only use one skill, copy only that folder.
@@ -437,13 +462,16 @@ Released under the [MIT License](LICENSE). You are free to use, modify, and redi
 
 Platform Product Skills 是一组**跨工具**的 skills——同一份 `SKILL.md` 在 Codex 和 Claude Code（CLI、桌面 App、claude.ai/code）里都能用——面向平台型产品、中后台、流程产品和金融科技产品团队，用于结构化产品协作、PRD 编写、PRD Review、MVP 范围控制和跨系统协作。
 
-这个仓库目前包含 4 个核心 skills 和 1 个专项 flow skill：
+这个仓库包含 5 个专项 skills，外加 1 个统一入口编排器，把它们变成"一句自然语言即可驱动"的入口：
 
+- `platform-product-orchestrator` —— 入口层：你用自然语言描述任务，它自动路由到对应的专项 skill
 - `platform-product-guide`
 - `platform-prd-builder`
 - `platform-scope-checker`
 - `platform-prd-reviewer`
 - `platform-flow-modeler`
+
+你可以只跟编排器说话、让它来选；也可以在已经知道要用哪个时，直接调用对应的专项 skill。
 
 这些 skills 主要适用于复杂产品和平台型产品场景，例如：
 
@@ -569,6 +597,24 @@ state-management
 
 ## Skills
 
+### `platform-product-orchestrator`
+
+入口层。用自然语言描述一个产品任务，它判断意图、选对流程，并在背后调用下面的专项 skill —— 你不用知道该选哪个。
+
+覆盖：写 PRD、审 PRD、解读/摘要已有 PRD、分析 PRD 或某个改动涉及的功能点改造、MVP 范围判断、跨系统 flow 建模、方向梳理。
+
+写 PRD 时它走：澄清（只问影响决策的问题）→ 出稿 → 自动审核 → 迭代 → 可选落盘。小增强默认走精简、变更导向的体例，只有 0-to-1 / 跨系统才上完整结构。
+
+**把它设成默认入口（可选）。** skill 靠 description 自动触发，但同域 skill 较多时，可在 `~/.claude/CLAUDE.md`（Claude Code）或你所用 agent 的项目指令里加一条规则，把路由偏向编排器：
+
+```md
+产品/中后台/流程/金融科技类任务，用自然语言描述时，默认走
+platform-product-orchestrator，由它在背后调用各专项 skill；只有当我
+显式点名或用 / 调用时，才直接用某个专项 skill。
+```
+
+个性化（你的输出风格、领域背景、团队惯例）应放在你自己的私有记忆/上下文里，不进这个公开仓库 —— 编排器运行时读取它，从而越用越顺。
+
 ### `platform-product-guide`
 
 复杂产品协作的核心操作系统。
@@ -652,6 +698,7 @@ cp -R skills/platform-prd-builder ~/.codex/skills/
 cp -R skills/platform-prd-reviewer ~/.codex/skills/
 cp -R skills/platform-scope-checker ~/.codex/skills/
 cp -R skills/platform-flow-modeler ~/.codex/skills/
+cp -R skills/platform-product-orchestrator ~/.codex/skills/
 ```
 
 **Claude Code** —— 安装到 `~/.claude/skills`（CLI、桌面 App、claude.ai/code 通用）：
@@ -663,6 +710,7 @@ cp -R skills/platform-prd-builder ~/.claude/skills/
 cp -R skills/platform-prd-reviewer ~/.claude/skills/
 cp -R skills/platform-scope-checker ~/.claude/skills/
 cp -R skills/platform-flow-modeler ~/.claude/skills/
+cp -R skills/platform-product-orchestrator ~/.claude/skills/
 ```
 
 可以全部安装，也可以只复制自己需要的 skill。每个 skill 里的 `agents/openai.yaml` 是 Codex 专用的 UI 元数据，其它工具会忽略它，所以整个文件夹直接复制也没问题。
@@ -845,6 +893,7 @@ cp -R skills/platform-prd-builder "$DEST"/
 cp -R skills/platform-prd-reviewer "$DEST"/
 cp -R skills/platform-scope-checker "$DEST"/
 cp -R skills/platform-flow-modeler "$DEST"/
+cp -R skills/platform-product-orchestrator "$DEST"/
 ```
 
 如果只使用某一个 skill，只复制对应文件夹即可。

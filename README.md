@@ -13,16 +13,20 @@ You don't pick tools or learn commands. You talk to one **product deputy** in pl
 ## See it work
 
 ```text
-You: 写个审批中心的 PRD，加个功能：申请人 cancel 时通知当前在审的审批人。
+You: Write a PRD for the approval center — add a feature: when the applicant
+     cancels, notify the approvers currently reviewing it.
 
-It:  确认 3 点（其余我按合理默认走）：
-     1. 只通知当前在审层，还是下游 pending 层也通知？
-     2. cancel 原因是否必填？
-     3. 挂在母 PRD 哪一节下？
-     → 你答完，它出精简初稿 → 自动审一遍给就绪度和必改项 → 和你迭代到定稿。
+It:  A few things to confirm (I'll assume sensible defaults for the rest):
+     1. Notify only the active level, or the downstream pending levels too?
+     2. Is a cancellation reason required?
+     3. Which section of the parent PRD does this hang off?
+     -> Once you answer: a lean first draft -> an automatic review with a
+        readiness score and must-fix items -> we iterate to final.
 ```
 
-Hand it an existing PRD instead and ask "这主要写了什么、涉及哪些功能点改造" — it reads and gives you a digest plus an impact analysis. Same entry, different job.
+Hand it an existing PRD instead and ask "what does this mainly cover, and which functions would it change?" — it reads and gives you a digest plus an impact analysis. Same entry, different job.
+
+(Talk to it in whatever language you work in — the examples here are illustrative.)
 
 ## What it does for you
 
@@ -58,9 +62,9 @@ cp -R skills/platform-flow-modeler         "$DEST"/
 **2. Just say what you want.** No skill to pick, nothing to configure — your product deputy is the default entry:
 
 ```text
-写个审批中心的 PRD，加个功能：申请人 cancel 时通知当前在审的审批人。
-这份 PRD 帮我看看主要写了什么，可能涉及哪些功能点改造。[paste/attach PRD]
-这个改动要不要放进本期？[change]
+Write a PRD for the approval center — add a feature: notify the active approvers when the applicant cancels.
+Read this PRD and tell me what it mainly covers and which functions it would change. [paste/attach PRD]
+Should this change go in the current phase? [change]
 ```
 
 **3. (Optional) enforce deputy-first.** It's already the default out of the box. If you want a hard guarantee, add this to your `~/.claude/CLAUDE.md` (Claude Code) or your agent's project instructions:

@@ -99,6 +99,13 @@ You (natural language)
 
 The product deputy is the entry brain; the specialists are the capabilities it calls; your personalization lives in your own private memory (never in this repo) and is read at runtime. You can also call any specialist directly when you already know what you want.
 
+Four things make it feel less like a tool and more like a deputy:
+
+- **Install-and-go setup.** On first use it asks one thing — where to save your PRDs — and quietly sets up everything else. No config files to edit.
+- **Requirements stay separate.** When you move to a new, independent requirement it keeps it isolated so details from one PRD don't bleed into another (on Codex it can open a dedicated sub-session; on Claude Code it guides you to a fresh session and carries the context over). Related requirements can still be worked together.
+- **It remembers in two layers.** Your *style and domain* persist across everything; each *requirement* gets its own lightweight "card" that's recalled on demand — so it asks less over time and you can pick a topic back up without re-explaining.
+- **Right model for each step, to save cost.** Cheaper models for light work (summaries, routing), stronger ones where judgment matters (review, cross-system flows) — plus tight per-task context, which cuts token use further.
+
 ## The specialist skills
 
 You normally don't call these yourself. Name one (or use `/skill-name`) when you want it directly.
@@ -237,6 +244,13 @@ platform-product-orchestrator，由它在背后调用各专项 skill；只有当
 ```
 
 产品副手是入口大脑，专项 skill 是它调用的能力，你的个性化存在你自己的私有记忆里（绝不进本仓库）、运行时读取。你也可以在明确时直接调用某个专项 skill。
+
+四点让它更像"副手"而不是"工具"：
+
+- **装上即用**：首次使用只问你一件事——PRD 存哪，其余自动配好，不用改任何配置文件。
+- **不同需求互不串味**：当你转到一个新的、独立的需求，它会隔离处理，避免一个 PRD 的细节渗进另一个（Codex 上可开独立子会话；Claude Code 上引导你开新会话并把上下文带过去）。相关的需求仍可放一起做。
+- **两层记忆**：你的*风格与领域*跨一切持久；每个*需求*有一张轻量"卡"、按需唤起——所以它越用问得越少，你也能不重讲就接着做旧话题。
+- **每步配对的模型，省成本**：轻活（摘要、路由）用便宜模型，吃判断的活（评审、跨系统流程）用强模型；再加上每个任务只带精简上下文，进一步省 token。
 
 ## 专项 skill 一览
 

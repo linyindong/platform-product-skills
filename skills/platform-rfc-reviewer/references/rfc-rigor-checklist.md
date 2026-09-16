@@ -1,92 +1,63 @@
-# RFC Rigor Checklist
+# RFC Review Checklist (product / function / logic lens)
 
-Load this for the detailed, per-dimension checks behind `platform-rfc-reviewer`. Apply proportionally to RFC scope; a small-change RFC need not satisfy every line. For each gap, name its product / operational / money / risk consequence.
+Load this for the detailed checks behind `platform-rfc-reviewer`. This is a PRODUCT skill: every check is about function, logic, or the user/ops-visible outcome — not about the engineering mechanism. Apply proportionally to RFC scope. For each gap, name its product / business consequence.
 
-## 1. Problem, goal, non-goals
+## 1. Delivers the function
 
-- The problem and why-now are stated; the RFC is not a solution in search of a problem.
-- Success criteria are explicit and testable.
-- Non-goals / out-of-scope are stated so the design isn't judged against things it never intended.
+- The design actually produces the required behavior/outcome, end to end.
+- Nothing required is silently missing, dropped, or quietly changed.
+- It doesn't over-deliver (unrequested behavior sneaking in) or under-deliver vs the intent.
 
-## 2. Design soundness & logical closure
+## 2. Logic closure
 
-- The proposed design actually solves the stated problem end to end.
-- No contradictions between prose, diagrams, data model, API, and examples.
-- Assumptions the design rests on are stated and plausible.
-- The design is proportional — not over-engineered for the problem, not too thin to hold.
+- The described behavior is internally consistent — prose, diagrams, and examples agree.
+- Every state/action maps to a real business result; no contradictions.
+- Assumptions the behavior rests on are stated and plausible.
 
-## 3. State & lifecycle
+## 3. Functional flow & states
 
-- All states and transitions are enumerated; terminal states defined.
-- Illegal / unexpected transitions are rejected or handled, not left undefined.
-- Who owns each state change (source of truth) is clear.
+- The end-to-end flow works and matches how the business actually operates.
+- States and transitions correspond to meaningful business outcomes; terminal outcomes defined.
+- Who is responsible for each outcome / decision (source of truth at the business level) is clear.
 
-## 4. Failure modes (the most common RFC gap)
+## 4. Failure outcomes (WHAT the user/ops sees, not HOW it's handled)
 
-- Timeout behavior defined for every remote/async call.
-- Retry policy: bounded, with backoff; safe to retry (idempotent) or explicitly guarded.
-- Partial failure: what state the system is left in, and how it recovers.
-- Duplicate / idempotency: duplicate requests or events don't double-apply effects.
-- Concurrency / races: simultaneous actors on the same entity are handled (locking, versioning, or ordering).
-- Ordering / delivery: at-least-once vs exactly-once assumptions are stated and matched by the design.
+- When a step fails, the user/ops-visible result is defined: what status, what message, what next.
+- Duplicate submission / re-submit / cancel produce a sensible functional result.
+- Someone owns resolving a stuck/failed case; there's a path back to a good state.
+- (Do not evaluate retry/idempotency mechanics — only whether the outcome is defined.)
 
-## 5. Data consistency & integrity
+## 5. Impact on existing behavior
 
-- Source of truth for each piece of data is unambiguous.
-- Transaction boundaries are correct; no cross-service "transaction" that can't hold.
-- Eventual-consistency windows are named, with what a reader/consumer sees during them.
-- Reconciliation exists for anything that can drift (money, status, cross-system counts).
-- Migration/backfill: correct, resumable, verifiable; behavior for in-flight records defined.
+- Existing functionality isn't broken or silently changed.
+- In-flight / existing records have defined behavior after the change.
+- Downstream/other teams that rely on current behavior are considered.
 
-## 6. API / contract rigor
+## 6. Rollout & fallback (outcome level)
 
-- Request/response fully specified: fields, types, mandatory, validation, defaults.
-- Error codes/messages enumerated; client behavior per error is clear.
-- Versioning & backward compatibility: existing callers keep working, or a migration path exists.
-- Downstream consumers identified and given what they need.
+- There's a way to turn it off, fall back, or handle manually so the business keeps running.
+- For a risky or data-changing change, the product-continuity story is clear (not the migration script).
 
-## 7. Rollout & reversibility
+## 7. Operability & audit (product/compliance need)
 
-- Migration / cutover steps are ordered and safe.
-- Rollback is possible and described — especially for schema or data-mutating changes.
-- Feature flag / dark launch / staged rollout where risk warrants.
-- Backfill safety: rate, idempotency, verification, and abort criteria.
+- Ops/support can handle the new cases (visibility, a manual path).
+- Audit / traceability exists where money, contract, approval, or status changes.
 
-## 8. Observability & operability
+## 8. Scope vs intent (and PRD alignment if provided)
 
-- Metrics for the new paths and their failure modes.
-- Logging/tracing sufficient to debug a production incident.
-- Alerts on the conditions that matter (failure rate, backlog, drift).
-- Runbook / manual intervention path for the new exception modes.
-
-## 9. Security & compliance (weight up for fintech / back-office)
-
-- Authentication & authorization for new endpoints/actions.
-- Audit trail for money/contract/approval/status-changing actions (immutable where required).
-- Data sensitivity: PII/financial data handling, masking, retention.
-- Regulatory / risk constraints acknowledged where relevant.
-
-## 10. Performance & scale (only when claimed or required)
-
-- Capacity assumptions stated; hotspots / N+1 / fan-out considered.
-- SLA / latency / throughput targets, if the product needs them, are addressed.
-- Degradation behavior under load.
-
-## 11. Alternatives, dependencies, assumptions
-
-- Alternatives considered, with why the chosen one wins.
-- External dependencies and cross-team sequencing identified.
-- Unstated assumptions surfaced and validated.
+- The RFC's scope matches the requirement; note silent additions/removals.
+- If a PRD is provided, flag deviations, gaps (a requirement with no design), or changed behavior. Comparison, not a gate.
 
 ## Severity guide
 
-- **Blocking / High**: design does not close; or a failure / rollback / consistency / contract / security gap that can cause money, contract, approval, status, data, or serious operational damage.
-- **Tighten**: a rigor or clarity gap with a clear local fix; won't break correctness but weakens the design or its reviewability.
-- **Engineering-choice**: an implementation detail (queue, DB, framework, algorithm, code structure) — raise only when it carries a stated product / operational / cost / risk consequence; otherwise leave to engineering.
+- **Blocking**: a required function isn't delivered; logic doesn't close; a failure/edge case has no defined business outcome; existing behavior breaks — i.e. the business result (money / contract / approval / status / user experience) is at risk.
+- **Should clarify**: a functional gap or ambiguity with a clear product answer; won't break the outcome but leaves it underspecified.
+- **Engineering's call**: an implementation detail (idempotency, concurrency, transactions, DB/queue/framework, performance, schema) — raise ONLY if a functional/product outcome depends on it, and frame it as the outcome question, never as a critique of the mechanism.
 
 ## Turning gaps into WT questions
 
-For each Blocking/High or Tighten gap, phrase a meeting-ready question:
-- tie it to the concrete risk ("if the callback times out after the ledger write, what state is the ticket in?");
+For each Blocking / Should-clarify gap, phrase a meeting-ready, product-language question:
+- tie it to the business consequence ("if notifying the portal fails after approval, what status does the applicant see and who fixes it?");
 - make it answerable by engineering in the room;
-- group by area and rank money/contract/approval/status risks first.
+- group by area and rank money / contract / approval / status / user-facing risks first;
+- never ask about implementation trivia.

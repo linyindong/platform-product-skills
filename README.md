@@ -32,7 +32,7 @@ Hand it an existing PRD instead and ask "what does this mainly cover, and which 
 
 - **Turns a rough idea into a PRD** — clarify → draft → review → iterate, without the blank-page start.
 - **Reviews a PRD like a strict lead** — readiness score, concrete contradictions, must-fix gaps, what's PRD vs RFC.
-- **Reviews an engineering RFC** — checks the design's logic, failure modes, and rollout, and hands you sharp questions for the RFC review meeting (works with or without a PRD).
+- **Reviews an engineering RFC (product lens)** — whether the design delivers the function, whether the logic holds, and what users see when things fail — and hands you sharp questions for the RFC review meeting (works with or without a PRD).
 - **Explains an existing PRD** — what it covers, in seconds.
 - **Analyzes impact** — which systems and functions a change actually touches, and the hidden complexity.
 - **Guards your MVP** — should this be in scope now? include / simplify / defer, with the boundary drawn.
@@ -118,7 +118,7 @@ You normally don't call these yourself. Name one (or use `/skill-name`) when you
 | `platform-product-guide` | Direction framing, platform-capability abstraction, ownership/source-of-truth reasoning. |
 | `platform-prd-builder` | Draft or rewrite PRDs / requirement sections from rough input. |
 | `platform-prd-reviewer` | Review PRDs — readiness, document-specific findings, consistency, RFC boundary. |
-| `platform-rfc-reviewer` | Review an engineering RFC / technical design — rigor, failure modes, consistency, rollout, security; plus questions for the RFC review meeting. Works with or without a PRD. |
+| `platform-rfc-reviewer` | Review an engineering RFC from a product lens — function delivered, logic closure, failure outcomes, impact on existing behavior; plus questions for the RFC review meeting. Leaves technical mechanics to engineering. Works with or without a PRD. |
 | `platform-scope-checker` | MVP scope, hidden complexity, impact analysis, include / simplify / defer. |
 | `platform-flow-modeler` | Cross-system flows, state, callback / rollback / reconciliation, ownership. |
 
@@ -183,7 +183,7 @@ Keywords: agent skills, Codex skills, Claude Code skills, product management, PR
 
 - **把粗糙想法变成 PRD** —— 澄清 → 出稿 → 审核 → 迭代，告别空白页开局。
 - **像严格的 lead 一样评审** —— 就绪度打分、具体矛盾、必改项、哪些是 PRD、哪些该进 RFC。
-- **评审研发 RFC** —— 查设计的逻辑闭环、失败/回滚、一致性,并给你一批能在 RFC 评审会上直接问的尖锐问题(给不给 PRD 都能用)。
+- **评审研发 RFC(产品视角)** —— 看功能是否实现、逻辑是否闭环、失败时用户看到什么,并给你一批能在 RFC 评审会上直接问的问题(给不给 PRD 都能用)。
 - **看懂一份现成 PRD** —— 它主要写了什么，几秒说清。
 - **分析影响** —— 一个改动到底动了哪些系统和功能，以及隐藏复杂度。
 - **守住你的 MVP** —— 这个要不要本期做？include / 简化 / 延后，边界给你划好。
@@ -267,7 +267,7 @@ platform-product-orchestrator，由它在背后调用各专项 skill；只有当
 | `platform-product-guide` | 方向梳理、平台能力抽象、ownership/source-of-truth 推理。 |
 | `platform-prd-builder` | 从粗略输入起草或改写 PRD / 需求章节。 |
 | `platform-prd-reviewer` | 评审 PRD —— 就绪度、文档内具体问题、一致性、RFC 边界。 |
-| `platform-rfc-reviewer` | 评审研发 RFC / 技术设计 —— 严谨性、失败模式、一致性、上线、安全;并产出 RFC 评审会要问的问题。给不给 PRD 都能用。 |
+| `platform-rfc-reviewer` | 评审研发 RFC —— 产品视角:功能是否实现、逻辑闭环、失败结果、对现有行为的影响;并产出 RFC 评审会要问的问题。技术实现细节交给工程。给不给 PRD 都能用。 |
 | `platform-scope-checker` | MVP 范围、隐藏复杂度、影响分析、include / 简化 / 延后。 |
 | `platform-flow-modeler` | 跨系统 flow、状态、callback / rollback / 对账、ownership。 |
 

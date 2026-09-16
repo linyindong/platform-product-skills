@@ -46,7 +46,7 @@ On the first use:
 | "这个方向没想清" | Direction framing | product-guide | Direction brief |
 | "审一下这份 PRD" | Review | prd-reviewer (+flow-modeler if needed) | Readiness + must-fix |
 | "把这段改写/补全" | Rewrite | prd-builder (rewrite mode) | Revised section |
-| "审/评估这份 RFC、准备 RFC 评审会" | RFC review | rfc-reviewer (+flow-modeler if needed) | Rigor gaps + WT questions |
+| "审/评估这份 RFC、准备 RFC 评审会" | RFC review | rfc-reviewer (+flow-modeler if needed) | Function/logic gaps + WT questions |
 
 If intent is genuinely ambiguous, ask one short question rather than guessing a heavy workflow.
 
@@ -125,7 +125,7 @@ Discuss in Chinese; produce PRDs in English (unless the profile says otherwise).
 
 ## Skill Routing (internal)
 
-product-guide (direction/ownership) · scope-checker (MVP/impact) · flow-modeler (flow/state/reconciliation) · prd-builder (draft/rewrite) · prd-reviewer (readiness/consistency) · rfc-reviewer (engineering RFC rigor + WT questions). Add ownership-mapper / rollout-planner only if real usage shows a recurring gap.
+product-guide (direction/ownership) · scope-checker (MVP/impact) · flow-modeler (flow/state/reconciliation) · prd-builder (draft/rewrite) · prd-reviewer (readiness/consistency) · rfc-reviewer (product-lens RFC review: function/logic + WT questions). Add ownership-mapper / rollout-planner only if real usage shows a recurring gap.
 
 ## Quality Checklist
 

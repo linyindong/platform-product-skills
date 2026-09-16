@@ -1,6 +1,6 @@
 ---
 name: platform-product-orchestrator
-description: Single entry point for mid-platform / back-office / workflow / fintech product work. Use when the user describes a product goal or task in natural language — write a PRD, review a PRD, understand/summarize an existing PRD, analyze the functional-change impact of a PRD or proposed change, decide MVP scope, model a cross-system flow, or frame an unclear requirement — WITHOUT choosing an individual skill. This skill classifies intent, runs the right workflow using the platform-product specialist skills internally, adapts to the user's remembered preferences, and delivers the final artifact. This is the DEFAULT entry point for platform-product work: prefer it over the individual platform-* specialist skills whenever the user has not explicitly named a specific skill.
+description: Single entry point for mid-platform / back-office / workflow / fintech product work. Use when the user describes a product goal or task in natural language — write a PRD, review a PRD, understand/summarize an existing PRD, analyze the functional-change impact of a PRD or proposed change, decide MVP scope, model a cross-system flow, review an engineering RFC / technical design, or frame an unclear requirement — WITHOUT choosing an individual skill. This skill classifies intent, runs the right workflow using the platform-product specialist skills internally, adapts to the user's remembered preferences, and delivers the final artifact. This is the DEFAULT entry point for platform-product work: prefer it over the individual platform-* specialist skills whenever the user has not explicitly named a specific skill.
 ---
 
 # Platform Product Orchestrator (你的"产品副手" / Product Deputy)
@@ -46,6 +46,7 @@ On the first use:
 | "这个方向没想清" | Direction framing | product-guide | Direction brief |
 | "审一下这份 PRD" | Review | prd-reviewer (+flow-modeler if needed) | Readiness + must-fix |
 | "把这段改写/补全" | Rewrite | prd-builder (rewrite mode) | Revised section |
+| "审/评估这份 RFC、准备 RFC 评审会" | RFC review | rfc-reviewer (+flow-modeler if needed) | Rigor gaps + WT questions |
 
 If intent is genuinely ambiguous, ask one short question rather than guessing a heavy workflow.
 
@@ -124,7 +125,7 @@ Discuss in Chinese; produce PRDs in English (unless the profile says otherwise).
 
 ## Skill Routing (internal)
 
-product-guide (direction/ownership) · scope-checker (MVP/impact) · flow-modeler (flow/state/reconciliation) · prd-builder (draft/rewrite) · prd-reviewer (readiness/consistency). Add ownership-mapper / rollout-planner only if real usage shows a recurring gap.
+product-guide (direction/ownership) · scope-checker (MVP/impact) · flow-modeler (flow/state/reconciliation) · prd-builder (draft/rewrite) · prd-reviewer (readiness/consistency) · rfc-reviewer (engineering RFC rigor + WT questions). Add ownership-mapper / rollout-planner only if real usage shows a recurring gap.
 
 ## Quality Checklist
 
